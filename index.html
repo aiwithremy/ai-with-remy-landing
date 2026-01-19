@@ -23,10 +23,20 @@
     <div class="ascii-scene" aria-hidden="true">
       <div class="ascii-scene__canvas">
 
-        <!-- Sun -->
-        <div class="ascii-sun">    \  |  /
-   -- (O) --
-    /  |  \</div>
+        <!-- Sun - top left -->
+        <div class="ascii-sun">            |
+            |
+  `.        |        .'
+    `.    .---.    .'
+       .~       ~.
+      /   O   O   \
+-- -- (             ) -- --
+      \    `-'    /
+       ~.       .~
+    .'    ~---~    `.
+  .'        |        `.
+            |
+            |</div>
 
         <!-- Clouds scattered around -->
         <div class="ascii-cloud ascii-cloud--1">      _  _
@@ -106,21 +116,29 @@
           </button>
         </form>
 
-        <!-- Social Proof -->
-        <p class="text-small hero__proof">
-          Join 2,500+ solopreneurs building with AI
-        </p>
+        <!-- Active Newsletter Indicator -->
+        <div class="newsletter-status">
+          <span class="newsletter-status__dot"></span>
+          <span class="newsletter-status__text">Actively publishing every Tuesday</span>
+        </div>
       </div>
     </header>
 
     <main>
       <!-- =====================================================
-           VSL SECTION
+           VSL SECTION - Retro Mac Window
            ===================================================== -->
       <section class="section vsl">
         <div class="container">
-          <div class="video-frame">
-            <div class="video-placeholder">
+          <div class="mac-window">
+            <div class="mac-window__titlebar">
+              <div class="mac-window__dots">
+                <span class="mac-window__dot mac-window__dot--close"></span>
+                <span class="mac-window__dot mac-window__dot--minimize"></span>
+                <span class="mac-window__dot mac-window__dot--maximize"></span>
+              </div>
+            </div>
+            <div class="mac-window__content">
               <button class="video-play-btn" aria-label="Play video">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path d="M8 5v14l11-7z"/>
