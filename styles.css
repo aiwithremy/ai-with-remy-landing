@@ -211,39 +211,33 @@ ul, ol {
   text-align: center;
 }
 
-/* === BUTTONS (Making Software Style) === */
+/* === BUTTONS (Web 1.0 Raised Style) === */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: var(--space-3) var(--space-5);
-  font-family: var(--font-display);
-  font-size: 0.625rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.02em;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border-strong);
+  border-radius: 4px;
+  border: 1px solid var(--color-gray-400);
   background: var(--color-bg);
   color: var(--color-text);
   box-shadow:
-    0 2px 0 0 var(--color-gray-300),
-    0 3px 6px rgba(0, 0, 0, 0.06);
+    inset -2px -2px 0 0 var(--color-gray-300);
   transition: all var(--transition-fast);
   white-space: nowrap;
 }
 
 .btn:hover {
-  transform: translateY(-1px);
-  box-shadow:
-    0 3px 0 0 var(--color-gray-300),
-    0 4px 8px rgba(0, 0, 0, 0.08);
+  background: var(--color-gray-100);
 }
 
 .btn:active {
-  transform: translateY(1px);
   box-shadow:
-    0 1px 0 0 var(--color-gray-300),
-    0 2px 4px rgba(0, 0, 0, 0.04);
+    inset 2px 2px 0 0 var(--color-gray-300);
 }
 
 .btn:focus-visible {
@@ -253,7 +247,7 @@ ul, ol {
 
 .btn--primary {
   background: var(--color-bg);
-  border-color: var(--color-border-strong);
+  border-color: var(--color-gray-400);
 }
 
 /* === SIGNUP FORM (Making Software Style) === */
@@ -276,25 +270,19 @@ ul, ol {
 .signup-form__input {
   flex: 1;
   padding: var(--space-3) var(--space-4);
-  font-family: var(--font-display);
-  font-size: 0.625rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.02em;
   background: var(--color-bg);
-  border: 1px solid var(--color-border-strong);
-  border-radius: var(--radius-lg);
-  box-shadow:
-    inset 0 1px 3px rgba(0, 0, 0, 0.04),
-    0 1px 0 0 rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--color-gray-400);
+  border-radius: 4px;
   outline: none;
   transition: all var(--transition-fast);
 }
 
 .signup-form__input:focus {
-  border-color: var(--color-accent);
-  box-shadow:
-    inset 0 1px 3px rgba(0, 0, 0, 0.04),
-    0 0 0 3px var(--color-accent-light);
+  border-color: var(--color-gray-500);
 }
 
 .signup-form__input::placeholder {
@@ -644,35 +632,28 @@ ul, ol {
   align-items: center;
   gap: var(--space-2);
   margin-bottom: var(--space-6);
-  padding: var(--space-2) var(--space-4);
+  padding: var(--space-1) var(--space-4);
   background: var(--color-gray-100);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   color: var(--color-text-secondary);
 }
 
-.hero__badge-dot {
-  width: 6px;
-  height: 6px;
-  background: var(--color-accent);
-  border-radius: 50%;
-}
-
 .hero__headline {
   margin-bottom: var(--space-5);
-  font-size: 2.5rem;
-  line-height: 1;
+  font-size: 1.5rem;
+  line-height: 1.3;
 }
 
 @media (min-width: 810px) {
   .hero__headline {
-    font-size: 3.5rem;
+    font-size: 2rem;
   }
 }
 
 @media (min-width: 1200px) {
   .hero__headline {
-    font-size: 3.5rem;
+    font-size: 2.25rem;
   }
 }
 
