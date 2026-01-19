@@ -219,39 +219,19 @@ ul, ol {
   text-align: center;
 }
 
-/* === SECTION ANNOTATIONS (Technical Labels) === */
+/* === SECTION ANNOTATIONS (Corner Markers) === */
 .section-annotation {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  margin-bottom: var(--space-6);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+  text-align: center;
 }
 
 .section-annotation__label {
-  white-space: nowrap;
-}
-
-.section-annotation__line {
-  flex: 1;
-  height: 1px;
-  background: var(--color-gray-300);
-}
-
-/* === SECTION DIVIDERS (Repeating Pattern) === */
-.section-divider {
-  text-align: center;
-  padding: var(--space-8) 0;
   font-family: var(--font-mono);
   font-size: var(--text-xs);
+  letter-spacing: 0.05em;
   color: var(--color-text-muted);
-  letter-spacing: 0.5em;
-  user-select: none;
 }
+
 
 /* === BUTTONS (Web 1.0 Raised Style) === */
 .btn {
@@ -471,14 +451,6 @@ ul, ol {
   }
 }
 
-/* Ground horizon */
-.ascii-ground {
-  position: absolute;
-  bottom: 5%;
-  left: 0;
-  width: 100%;
-  text-align: center;
-}
 
 /* Hide ASCII scene on mobile for performance */
 @media (max-width: 809px) {
@@ -1001,32 +973,32 @@ ul, ol {
   margin-bottom: var(--space-8);
 }
 
-/* Spec Sheet Layout */
+/* Spec Sheet Layout - Clean card grid */
 .spec-sheet {
-  text-align: left;
-  border-top: 1px solid var(--color-border-strong);
-}
-
-.spec-row {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-3);
-  padding: var(--space-5) 0;
-  border-bottom: 1px solid var(--color-border);
+  gap: var(--space-4);
+  text-align: left;
 }
 
 @media (min-width: 810px) {
-  .spec-row {
-    grid-template-columns: 140px 1fr;
-    gap: var(--space-6);
-    padding: var(--space-5) 0;
+  .spec-sheet {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
   }
+}
+
+.spec-row {
+  padding: var(--space-5);
+  background: var(--color-gray-100);
+  border-radius: var(--radius-sm);
 }
 
 .spec-label {
   display: flex;
   align-items: baseline;
-  gap: var(--space-3);
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
 }
 
 .spec-number {
@@ -1054,12 +1026,6 @@ ul, ol {
   font-size: var(--text-md);
   font-weight: 600;
   color: var(--color-text);
-}
-
-@media (min-width: 810px) {
-  .spec-title {
-    font-size: var(--text-lg);
-  }
 }
 
 .spec-desc {
