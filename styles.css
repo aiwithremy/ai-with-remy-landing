@@ -219,6 +219,40 @@ ul, ol {
   text-align: center;
 }
 
+/* === SECTION ANNOTATIONS (Technical Labels) === */
+.section-annotation {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+}
+
+.section-annotation__label {
+  white-space: nowrap;
+}
+
+.section-annotation__line {
+  flex: 1;
+  height: 1px;
+  background: var(--color-gray-300);
+}
+
+/* === SECTION DIVIDERS (Repeating Pattern) === */
+.section-divider {
+  text-align: center;
+  padding: var(--space-8) 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  letter-spacing: 0.5em;
+  user-select: none;
+}
+
 /* === BUTTONS (Web 1.0 Raised Style) === */
 .btn {
   display: inline-flex;
@@ -471,17 +505,29 @@ ul, ol {
   }
 }
 
-/* === ACCORDION === */
+/* === ACCORDION (Wait-style with borders) === */
 .accordion {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-3);
 }
 
 .accordion-item {
-  background: var(--color-gray-200);
-  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
   overflow: hidden;
+  transition: box-shadow var(--transition-fast);
+}
+
+.accordion-item:hover {
+  box-shadow: 0 2px 0 0 var(--color-gray-300);
+}
+
+.accordion-item.active {
+  box-shadow:
+    0 2px 0 0 var(--color-gray-300),
+    0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .accordion-header {
@@ -501,7 +547,7 @@ ul, ol {
 }
 
 .accordion-header:hover {
-  background: var(--color-gray-300);
+  background: var(--color-gray-100);
 }
 
 .accordion-header:focus-visible {
@@ -511,14 +557,10 @@ ul, ol {
 
 .accordion-icon {
   flex-shrink: 0;
-  font-size: var(--text-lg);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
   font-weight: 400;
-  color: var(--color-text-secondary);
-  transition: transform var(--transition-base);
-}
-
-.accordion-item.active .accordion-icon {
-  transform: rotate(45deg);
+  color: var(--color-text-muted);
 }
 
 .accordion-content {
@@ -774,11 +816,6 @@ ul, ol {
   border: 1px solid var(--color-accent);
 }
 
-/* Make the solution card stand out */
-.comparison__card--solution {
-  transform: scale(1.03);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-}
 
 .comparison__list {
   display: flex;
@@ -828,7 +865,7 @@ ul, ol {
 }
 
 /* =====================================================
-   LETTER SECTION
+   LETTER SECTION (Email Window Interface)
    ===================================================== */
 .letter {
   text-align: left;
@@ -836,25 +873,92 @@ ul, ol {
   position: relative;
 }
 
-.letter__header {
-  margin-bottom: var(--space-6);
-  text-align: center;
+/* Email Window (matches Mac window aesthetic) */
+.email-window {
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  overflow: hidden;
+  box-shadow:
+    0 2px 0 0 var(--color-gray-300),
+    0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
-.letter__dateline {
-  display: inline-block;
-  margin-bottom: var(--space-4);
-  color: var(--color-text-secondary);
+.email-window__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-gray-100);
+  border-bottom: 1px solid var(--color-border);
 }
 
-.letter__divider {
-  width: 60px;
-  height: 1px;
-  margin: 0 auto;
+.email-window__dots {
+  display: flex;
+  gap: 6px;
+}
+
+.email-window__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
   background: var(--color-gray-300);
+  border: 1px solid var(--color-border-strong);
 }
 
-.letter__content p {
+.email-window__title {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+
+.email-window__fields {
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.email-field {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+}
+
+.email-field:first-child {
+  padding-top: 0;
+}
+
+.email-field:last-child {
+  padding-bottom: 0;
+}
+
+.email-field__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  min-width: 55px;
+}
+
+.email-field__value {
+  font-size: var(--text-sm);
+  color: var(--color-text);
+}
+
+.email-window__body {
+  padding: var(--space-5);
+}
+
+@media (min-width: 810px) {
+  .email-window__body {
+    padding: var(--space-6);
+  }
+}
+
+.email-window__body p {
   margin-bottom: var(--space-4);
   font-size: var(--text-base);
   color: var(--color-text-secondary);
@@ -862,17 +966,19 @@ ul, ol {
 }
 
 @media (min-width: 810px) {
-  .letter__content p {
+  .email-window__body p {
     font-size: var(--text-md);
   }
 }
 
-.letter__content p:last-child {
+.email-window__body p:last-child {
   margin-bottom: 0;
 }
 
-.letter__content strong {
+.email-window__signature {
+  font-style: italic;
   color: var(--color-text);
+  margin-top: var(--space-6);
 }
 
 /* Subtle highlight for emphasis */
@@ -882,35 +988,8 @@ ul, ol {
   border-radius: 2px;
 }
 
-.letter__dropcap {
-  position: relative;
-}
-
-.dropcap {
-  float: left;
-  font-family: var(--font-display);
-  font-size: 2.75rem;
-  line-height: 1;
-  margin-right: var(--space-3);
-  margin-top: -0.05em;
-  color: var(--color-text);
-}
-
-@media (min-width: 810px) {
-  .dropcap {
-    font-size: 3.25rem;
-    margin-top: -0.08em;
-  }
-}
-
-.letter__signature {
-  font-style: italic;
-  color: var(--color-text);
-  margin-top: var(--space-6);
-}
-
 /* =====================================================
-   BENEFITS SECTION
+   BENEFITS SECTION (Spec Sheet)
    ===================================================== */
 .benefits {
   text-align: center;
@@ -922,49 +1001,68 @@ ul, ol {
   margin-bottom: var(--space-8);
 }
 
-.benefits__grid {
+/* Spec Sheet Layout */
+.spec-sheet {
+  text-align: left;
+  border-top: 1px solid var(--color-border-strong);
+}
+
+.spec-row {
   display: grid;
-  gap: var(--space-4);
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  padding: var(--space-5) 0;
+  border-bottom: 1px solid var(--color-border);
 }
 
 @media (min-width: 810px) {
-  .benefits__grid {
-    grid-template-columns: 1fr 1fr;
+  .spec-row {
+    grid-template-columns: 140px 1fr;
+    gap: var(--space-6);
+    padding: var(--space-5) 0;
   }
 }
 
-.benefits__card {
-  text-align: left;
+.spec-label {
   display: flex;
-  flex-direction: column;
+  align-items: baseline;
   gap: var(--space-3);
 }
 
-.benefits__icon {
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.ascii-icon {
+.spec-number {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  line-height: 1.2;
-  letter-spacing: 0;
-  white-space: pre;
-  color: var(--color-text);
-  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
 }
 
-.benefits__card-title {
-  font-size: var(--text-lg);
+.spec-name {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+
+.spec-value {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.spec-title {
+  font-size: var(--text-md);
   font-weight: 600;
   color: var(--color-text);
 }
 
-.benefits__card-text {
+@media (min-width: 810px) {
+  .spec-title {
+    font-size: var(--text-lg);
+  }
+}
+
+.spec-desc {
   font-size: var(--text-base);
   color: var(--color-text-secondary);
   line-height: 1.6;
@@ -975,9 +1073,41 @@ ul, ol {
    ===================================================== */
 .final-cta {
   text-align: center;
-  background: var(--color-gray-100);
   z-index: 1;
   position: relative;
+  background: transparent;
+}
+
+.final-cta__frame {
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  overflow: hidden;
+  box-shadow:
+    0 2px 0 0 var(--color-gray-300),
+    0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.final-cta__header {
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-gray-100);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.final-cta__prompt {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+}
+
+.final-cta__content {
+  padding: var(--space-8) var(--space-5);
+}
+
+@media (min-width: 810px) {
+  .final-cta__content {
+    padding: var(--space-10) var(--space-6);
+  }
 }
 
 .final-cta__headline {
@@ -1005,6 +1135,11 @@ ul, ol {
 .final-cta__subtext {
   max-width: 480px;
   margin: 0 auto var(--space-6);
+}
+
+.final-cta .signup-form {
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 /* =====================================================
