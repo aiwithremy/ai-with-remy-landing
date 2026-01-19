@@ -766,9 +766,9 @@ ul, ol {
 .comparison__label {
   display: inline-block;
   margin-bottom: var(--space-4);
-  padding: var(--space-1) var(--space-3);
+  padding: 0.125rem var(--space-2);
   font-family: var(--font-display);
-  font-size: 0.5rem;
+  font-size: 1rem;
   text-transform: uppercase;
   background: var(--color-gray-200);
   border-radius: var(--radius-sm);
@@ -781,10 +781,16 @@ ul, ol {
   border: 1px solid var(--color-accent);
 }
 
+/* Make the solution card stand out */
+.comparison__card--solution {
+  transform: scale(1.03);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
 .comparison__list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-2);
 }
 
 .comparison__list li {
@@ -876,6 +882,13 @@ ul, ol {
   color: var(--color-text);
 }
 
+/* Subtle highlight for emphasis */
+.highlight {
+  background: var(--color-accent-light);
+  padding: 0.1em 0.25em;
+  border-radius: 2px;
+}
+
 .letter__dropcap {
   position: relative;
 }
@@ -883,16 +896,17 @@ ul, ol {
 .dropcap {
   float: left;
   font-family: var(--font-display);
-  font-size: 2.5rem;
+  font-size: 2.75rem;
   line-height: 1;
   margin-right: var(--space-3);
-  margin-top: 0.15em;
+  margin-top: -0.05em;
   color: var(--color-text);
 }
 
 @media (min-width: 810px) {
   .dropcap {
-    font-size: 3rem;
+    font-size: 3.25rem;
+    margin-top: -0.08em;
   }
 }
 
