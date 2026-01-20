@@ -307,10 +307,10 @@ ul, ol {
 .signup-form__input {
   flex: 1;
   padding: var(--space-3) var(--space-4);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  text-transform: none;
+  letter-spacing: normal;
   background: var(--color-bg);
   border: 1px solid var(--color-gray-400);
   border-radius: 4px;
@@ -692,10 +692,10 @@ ul, ol {
   gap: var(--space-2);
   margin-bottom: var(--space-6);
   padding: var(--space-1) var(--space-4);
-  background: var(--color-gray-100);
-  border: 1px solid var(--color-border);
+  background: var(--color-accent-light);
+  border: 1px solid var(--color-accent);
   border-radius: var(--radius-lg);
-  color: var(--color-text-secondary);
+  color: var(--color-accent);
 }
 
 .hero__headline {
@@ -808,11 +808,14 @@ ul, ol {
 }
 
 .comparison__label {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: var(--space-4);
-  padding: 0.125rem var(--space-2);
+  padding: var(--space-2) var(--space-3);
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: 0.75rem;
+  line-height: 1;
   text-transform: uppercase;
   background: var(--color-gray-200);
   border-radius: var(--radius-sm);
