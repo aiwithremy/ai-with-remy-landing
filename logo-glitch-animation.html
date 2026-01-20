@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI WITH REMY - Glitch Logo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .glitch-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .glitch-text {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 32px;
+      color: rgb(64, 64, 255);
+      position: relative;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    /* Base layer - always visible */
+    .glitch-text.base {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Glitch layers - stacked copies with clip-path slices */
+    .glitch-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 32px;
+      color: rgb(64, 64, 255);
+      white-space: nowrap;
+    }
+
+    /* Slice 1 - Top portion */
+    .glitch-layer.slice-1 {
+      clip-path: inset(0 0 75% 0);
+      animation: glitch-slice-1 0.8s infinite steps(1);
+    }
+
+    /* Slice 2 - Upper-middle */
+    .glitch-layer.slice-2 {
+      clip-path: inset(25% 0 50% 0);
+      animation: glitch-slice-2 0.8s infinite steps(1);
+    }
+
+    /* Slice 3 - Lower-middle */
+    .glitch-layer.slice-3 {
+      clip-path: inset(50% 0 25% 0);
+      animation: glitch-slice-3 0.8s infinite steps(1);
+    }
+
+    /* Slice 4 - Bottom portion */
+    .glitch-layer.slice-4 {
+      clip-path: inset(75% 0 0 0);
+      animation: glitch-slice-4 0.8s infinite steps(1);
+    }
+
+    /* Additional thin slices for more chaos */
+    .glitch-layer.slice-5 {
+      clip-path: inset(15% 0 80% 0);
+      animation: glitch-slice-5 0.6s infinite steps(1);
+    }
+
+    .glitch-layer.slice-6 {
+      clip-path: inset(60% 0 35% 0);
+      animation: glitch-slice-6 0.7s infinite steps(1);
+    }
+
+    /* Flicker overlay */
+    .glitch-flicker {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 32px;
+      color: rgb(64, 64, 255);
+      white-space: nowrap;
+      animation: flicker 0.15s infinite;
+    }
+
+    /* Keyframes for horizontal displacement */
+    @keyframes glitch-slice-1 {
+      0%, 90%, 100% { transform: translateX(0); opacity: 0; }
+      5% { transform: translateX(-8px); opacity: 1; }
+      10% { transform: translateX(6px); opacity: 1; }
+      15% { transform: translateX(-4px); opacity: 0; }
+      40% { transform: translateX(10px); opacity: 1; }
+      45% { transform: translateX(-6px); opacity: 1; }
+      50% { transform: translateX(0); opacity: 0; }
+    }
+
+    @keyframes glitch-slice-2 {
+      0%, 85%, 100% { transform: translateX(0); opacity: 0; }
+      8% { transform: translateX(12px); opacity: 1; }
+      12% { transform: translateX(-10px); opacity: 1; }
+      18% { transform: translateX(5px); opacity: 0; }
+      35% { transform: translateX(-8px); opacity: 1; }
+      42% { transform: translateX(15px); opacity: 1; }
+      48% { transform: translateX(0); opacity: 0; }
+    }
+
+    @keyframes glitch-slice-3 {
+      0%, 80%, 100% { transform: translateX(0); opacity: 0; }
+      3% { transform: translateX(-15px); opacity: 1; }
+      9% { transform: translateX(8px); opacity: 1; }
+      14% { transform: translateX(-3px); opacity: 0; }
+      38% { transform: translateX(12px); opacity: 1; }
+      44% { transform: translateX(-10px); opacity: 1; }
+      52% { transform: translateX(0); opacity: 0; }
+    }
+
+    @keyframes glitch-slice-4 {
+      0%, 88%, 100% { transform: translateX(0); opacity: 0; }
+      6% { transform: translateX(10px); opacity: 1; }
+      11% { transform: translateX(-12px); opacity: 1; }
+      16% { transform: translateX(7px); opacity: 0; }
+      32% { transform: translateX(-5px); opacity: 1; }
+      40% { transform: translateX(14px); opacity: 1; }
+      46% { transform: translateX(0); opacity: 0; }
+    }
+
+    @keyframes glitch-slice-5 {
+      0%, 75%, 100% { transform: translateX(0); opacity: 0; }
+      10% { transform: translateX(-20px); opacity: 1; }
+      15% { transform: translateX(18px); opacity: 1; }
+      20% { transform: translateX(0); opacity: 0; }
+      55% { transform: translateX(22px); opacity: 1; }
+      60% { transform: translateX(-15px); opacity: 1; }
+      65% { transform: translateX(0); opacity: 0; }
+    }
+
+    @keyframes glitch-slice-6 {
+      0%, 70%, 100% { transform: translateX(0); opacity: 0; }
+      12% { transform: translateX(16px); opacity: 1; }
+      18% { transform: translateX(-14px); opacity: 1; }
+      24% { transform: translateX(0); opacity: 0; }
+      50% { transform: translateX(-18px); opacity: 1; }
+      56% { transform: translateX(12px); opacity: 1; }
+      62% { transform: translateX(0); opacity: 0; }
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      10% { opacity: 0.9; }
+      20% { opacity: 1; }
+      30% { opacity: 0.85; }
+      40% { opacity: 1; }
+      50% { opacity: 0.95; }
+      60% { opacity: 1; }
+      70% { opacity: 0.9; }
+      80% { opacity: 1; }
+      90% { opacity: 0.88; }
+    }
+
+    /* Scanline effect overlay */
+    .scanlines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.15) 2px,
+        rgba(0, 0, 0, 0.15) 4px
+      );
+      z-index: 10;
+    }
+
+    /* Color aberration effect */
+    .glitch-text.base::before,
+    .glitch-text.base::after {
+      content: 'AI WITH REMY';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .glitch-text.base::before {
+      color: rgba(255, 0, 0, 0.5);
+      animation: aberration-red 0.8s infinite steps(1);
+      z-index: -1;
+    }
+
+    .glitch-text.base::after {
+      color: rgba(0, 255, 255, 0.5);
+      animation: aberration-cyan 0.8s infinite steps(1);
+      z-index: -1;
+    }
+
+    @keyframes aberration-red {
+      0%, 90%, 100% { transform: translate(0, 0); opacity: 0; }
+      5% { transform: translate(-2px, 0); opacity: 0.8; }
+      10% { transform: translate(2px, 1px); opacity: 0.6; }
+      15% { transform: translate(-1px, -1px); opacity: 0; }
+      40% { transform: translate(3px, 0); opacity: 0.7; }
+      45% { transform: translate(-2px, 1px); opacity: 0.5; }
+      50% { transform: translate(0, 0); opacity: 0; }
+    }
+
+    @keyframes aberration-cyan {
+      0%, 88%, 100% { transform: translate(0, 0); opacity: 0; }
+      7% { transform: translate(2px, 0); opacity: 0.8; }
+      12% { transform: translate(-2px, -1px); opacity: 0.6; }
+      17% { transform: translate(1px, 1px); opacity: 0; }
+      42% { transform: translate(-3px, 0); opacity: 0.7; }
+      47% { transform: translate(2px, -1px); opacity: 0.5; }
+      52% { transform: translate(0, 0); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="glitch-container">
+    <span class="glitch-text base">AI WITH REMY</span>
+    <span class="glitch-layer slice-1">AI WITH REMY</span>
+    <span class="glitch-layer slice-2">AI WITH REMY</span>
+    <span class="glitch-layer slice-3">AI WITH REMY</span>
+    <span class="glitch-layer slice-4">AI WITH REMY</span>
+    <span class="glitch-layer slice-5">AI WITH REMY</span>
+    <span class="glitch-layer slice-6">AI WITH REMY</span>
+    <span class="glitch-flicker">AI WITH REMY</span>
+    <div class="scanlines"></div>
+  </div>
+</body>
+</html>
