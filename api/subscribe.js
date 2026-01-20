@@ -1,31 +1,28 @@
 // Vercel Serverless Function - handles Beehiiv newsletter signups
-// Uses modern Vercel Functions syntax with POST export
 
-export async function POST(request) {
+export default async function handler(req, res) {
+  // Only allow POST requests
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  // Get email from the request body
+  const { email } = req.body;
+
+  if (!email) {
+    return res.status(400).json({ error: 'Email is required' });
+  }
+
+  // Get API credentials from environment variables (secure, not exposed to browser)
+  const BEEHIIV_API_KEY = process.env.BEEHIIV_API_KEY;
+  const BEEHIIV_PUB_ID = process.env.BEEHIIV_PUB_ID;
+
+  if (!BEEHIIV_API_KEY || !BEEHIIV_PUB_ID) {
+    console.error('Missing Beehiiv environment variables');
+    return res.status(500).json({ error: 'Server configuration error' });
+  }
+
   try {
-    // Get email from the request body
-    const body = await request.json();
-    const { email } = body;
-
-    if (!email) {
-      return new Response(
-        JSON.stringify({ error: 'Email is required' }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
-      );
-    }
-
-    // Get API credentials from environment variables (secure, not exposed to browser)
-    const BEEHIIV_API_KEY = process.env.BEEHIIV_API_KEY;
-    const BEEHIIV_PUB_ID = process.env.BEEHIIV_PUB_ID;
-
-    if (!BEEHIIV_API_KEY || !BEEHIIV_PUB_ID) {
-      console.error('Missing Beehiiv environment variables');
-      return new Response(
-        JSON.stringify({ error: 'Server configuration error' }),
-        { status: 500, headers: { 'Content-Type': 'application/json' } }
-      );
-    }
-
     // Call Beehiiv API from the server (no CORS issues here!)
     const response = await fetch(
       `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUB_ID}/subscriptions`,
@@ -45,21 +42,14 @@ export async function POST(request) {
     const data = await response.json();
 
     if (response.ok) {
-      return new Response(
-        JSON.stringify({ success: true, data }),
-        { status: 200, headers: { 'Content-Type': 'application/json' } }
-      );
+      return res.status(200).json({ success: true, data });
     } else {
-      return new Response(
-        JSON.stringify({ error: data.message || 'Subscription failed' }),
-        { status: response.status, headers: { 'Content-Type': 'application/json' } }
-      );
+      return res.status(response.status).json({
+        error: data.message || 'Subscription failed'
+      });
     }
   } catch (error) {
     console.error('Beehiiv API error:', error);
-    return new Response(
-      JSON.stringify({ error: 'Failed to subscribe' }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
-    );
+    return res.status(500).json({ error: 'Failed to subscribe' });
   }
 }
