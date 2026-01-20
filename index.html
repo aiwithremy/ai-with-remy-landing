@@ -152,7 +152,7 @@
         <div class="container">
           <!-- Section Annotation -->
           <div class="section-annotation">
-            <span class="section-annotation__label">[02]</span>
+            <span class="section-annotation__label" data-type-text="[02] // COMPARISON _"></span>
           </div>
 
           <h2 class="heading-2 comparison__title">
@@ -194,7 +194,7 @@
         <div class="container">
           <!-- Section Annotation -->
           <div class="section-annotation">
-            <span class="section-annotation__label">[03]</span>
+            <span class="section-annotation__label" data-type-text="[03] // LETTER _"></span>
           </div>
 
           <!-- Email Window -->
@@ -262,7 +262,7 @@
         <div class="container">
           <!-- Section Annotation -->
           <div class="section-annotation">
-            <span class="section-annotation__label">[04]</span>
+            <span class="section-annotation__label" data-type-text="[04] // BENEFITS _"></span>
           </div>
 
           <h2 class="heading-2 benefits__title">
@@ -324,7 +324,7 @@
         <div class="container">
           <!-- Section Annotation -->
           <div class="section-annotation">
-            <span class="section-annotation__label">[05]</span>
+            <span class="section-annotation__label" data-type-text="[05] // SUBSCRIBE _"></span>
           </div>
 
           <!-- Terminal-style CTA Frame -->
@@ -369,7 +369,7 @@
         <div class="container">
           <!-- Section Annotation -->
           <div class="section-annotation">
-            <span class="section-annotation__label">[06]</span>
+            <span class="section-annotation__label" data-type-text="[06] // FAQ _"></span>
           </div>
 
           <h2 class="heading-2 faq__title">
@@ -453,6 +453,13 @@
         </div>
       </div>
     </footer>
+
+    <!-- =====================================================
+         PAGE END ELEMENT (Dither Fade)
+         ===================================================== -->
+    <div class="page-end" aria-hidden="true">
+      <div class="page-end__dither"></div>
+    </div>
   </div>
 
   <!-- =====================================================
@@ -460,6 +467,7 @@
        ===================================================== -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // === FAQ Accordion ===
       const accordionHeaders = document.querySelectorAll('.accordion-header');
 
       accordionHeaders.forEach(header => {
@@ -490,6 +498,51 @@
             this.click();
           }
         });
+      });
+
+      // === Section Label Typing Animation ===
+      const typeLabels = document.querySelectorAll('.section-annotation__label[data-type-text]');
+
+      const typeText = (element) => {
+        const fullText = element.getAttribute('data-type-text');
+        // Remove the trailing underscore since CSS adds the blinking cursor
+        const textToType = fullText.endsWith(' _') ? fullText.slice(0, -2) : fullText;
+        let currentIndex = 0;
+        element.textContent = '';
+
+        const typeChar = () => {
+          if (currentIndex < textToType.length) {
+            element.textContent = textToType.slice(0, currentIndex + 1);
+            currentIndex++;
+            // Variable typing speed for more natural feel
+            const delay = Math.random() * 30 + 40;
+            setTimeout(typeChar, delay);
+          } else {
+            element.classList.add('typed');
+          }
+        };
+
+        typeChar();
+      };
+
+      // Intersection Observer for scroll-triggered typing
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5
+      };
+
+      const typeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !entry.target.classList.contains('typed')) {
+            typeText(entry.target);
+            typeObserver.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      typeLabels.forEach(label => {
+        typeObserver.observe(label);
       });
     });
   </script>
