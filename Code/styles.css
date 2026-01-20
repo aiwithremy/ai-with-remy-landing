@@ -1456,24 +1456,24 @@ ul, ol {
   }
 }
 
-/* ASCII Art Terminal */
+/* ASCII Art Mailbox */
 .confirmation__art {
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-4);
 }
 
 @media (min-width: 810px) {
   .confirmation__art {
-    margin-bottom: var(--space-8);
+    margin-bottom: var(--space-5);
   }
 }
 
 .ascii-terminal {
   font-family: var(--font-mono);
-  font-size: 6px;
-  line-height: 1.15;
+  font-size: 8px;
+  line-height: 1.2;
   letter-spacing: 0;
   white-space: pre;
-  color: var(--color-text-secondary);
+  color: #4a4a4a;
   user-select: none;
   display: inline-block;
   text-align: left;
@@ -1481,19 +1481,19 @@ ul, ol {
 
 @media (min-width: 480px) {
   .ascii-terminal {
-    font-size: 8px;
+    font-size: 10px;
   }
 }
 
 @media (min-width: 810px) {
   .ascii-terminal {
-    font-size: 10px;
+    font-size: 12px;
   }
 }
 
 @media (min-width: 1200px) {
   .ascii-terminal {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
@@ -1529,12 +1529,12 @@ ul, ol {
 /* Subhead */
 .confirmation__subhead {
   max-width: 420px;
-  margin: 0 auto var(--space-6);
+  margin: 0 auto var(--space-8);
 }
 
 @media (min-width: 810px) {
   .confirmation__subhead {
-    margin-bottom: var(--space-8);
+    margin-bottom: var(--space-10);
   }
 }
 
