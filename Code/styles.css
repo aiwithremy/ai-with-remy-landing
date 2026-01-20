@@ -1422,3 +1422,228 @@ ul, ol {
 .hero .fade-in:nth-child(3) { animation-delay: 160ms; }
 .hero .fade-in:nth-child(4) { animation-delay: 240ms; }
 .hero .fade-in:nth-child(5) { animation-delay: 320ms; }
+
+/* =====================================================
+   CONFIRMATION PAGE STYLES
+   ===================================================== */
+
+/* Page-level modifier for confirmation styling */
+.page-wrapper--confirmation {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main confirmation section */
+.confirmation {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-8) 0;
+}
+
+@media (min-width: 810px) {
+  .confirmation {
+    padding: var(--space-10) 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .confirmation {
+    padding: var(--space-12) 0;
+  }
+}
+
+/* ASCII Art Terminal */
+.confirmation__art {
+  margin-bottom: var(--space-6);
+}
+
+@media (min-width: 810px) {
+  .confirmation__art {
+    margin-bottom: var(--space-8);
+  }
+}
+
+.ascii-terminal {
+  font-family: var(--font-mono);
+  font-size: 6px;
+  line-height: 1.15;
+  letter-spacing: 0;
+  white-space: pre;
+  color: var(--color-text-secondary);
+  user-select: none;
+  display: inline-block;
+  text-align: left;
+}
+
+@media (min-width: 480px) {
+  .ascii-terminal {
+    font-size: 8px;
+  }
+}
+
+@media (min-width: 810px) {
+  .ascii-terminal {
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .ascii-terminal {
+    font-size: 12px;
+  }
+}
+
+/* Blinking cursor animation for terminal */
+.ascii-terminal__cursor {
+  animation: cursorBlink 1s steps(1) infinite;
+}
+
+/* Headline - Uses PP Neue Bit */
+.confirmation__headline {
+  font-family: 'PP Neue Bit', var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  margin-bottom: var(--space-4);
+}
+
+@media (min-width: 810px) {
+  .confirmation__headline {
+    font-size: 2.75rem;
+    margin-bottom: var(--space-5);
+  }
+}
+
+@media (min-width: 1200px) {
+  .confirmation__headline {
+    font-size: 3.25rem;
+  }
+}
+
+/* Subhead */
+.confirmation__subhead {
+  max-width: 420px;
+  margin: 0 auto var(--space-6);
+}
+
+@media (min-width: 810px) {
+  .confirmation__subhead {
+    margin-bottom: var(--space-8);
+  }
+}
+
+/* Email Provider Buttons Container */
+.confirmation__providers {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+@media (min-width: 480px) {
+  .confirmation__providers {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+}
+
+@media (min-width: 810px) {
+  .confirmation__providers {
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+  }
+}
+
+/* Provider Button Modifier */
+.btn--provider {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-width: 140px;
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .btn--provider {
+    width: auto;
+  }
+}
+
+.btn__icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* Divider */
+.confirmation__divider {
+  width: 100%;
+  max-width: 180px;
+  height: 1px;
+  margin: 0 auto var(--space-5);
+  background: var(--color-gray-300);
+  border: none;
+}
+
+@media (min-width: 810px) {
+  .confirmation__divider {
+    max-width: 200px;
+    margin-bottom: var(--space-6);
+  }
+}
+
+/* What to Expect */
+.confirmation__expect {
+  margin-bottom: var(--space-5);
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 810px) {
+  .confirmation__expect {
+    margin-bottom: var(--space-6);
+  }
+}
+
+/* Whitelist Tip */
+.confirmation__tip {
+  max-width: 380px;
+  margin: 0 auto;
+  padding: var(--space-4);
+  border: 1px dashed var(--color-gray-300);
+  border-radius: var(--radius-sm);
+  background: var(--color-gray-100);
+}
+
+.confirmation__tip-text {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.confirmation__tip-text strong {
+  color: var(--color-text-secondary);
+}
+
+/* Minimal Footer Modifier */
+.footer--minimal {
+  padding: var(--space-4) 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer--minimal .footer__copyright {
+  margin: 0;
+  font-size: var(--text-xs);
+  text-align: center;
+}

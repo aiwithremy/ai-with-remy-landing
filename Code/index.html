@@ -604,15 +604,8 @@
             );
 
             if (response.ok) {
-              // Success state
-              button.textContent = "You're in!";
-              form.reset();
-
-              // Reset button after 3 seconds
-              setTimeout(() => {
-                button.textContent = originalText;
-                button.disabled = false;
-              }, 3000);
+              // Success - redirect to confirmation page
+              window.location.href = 'confirm.html';
             } else {
               const data = await response.json();
               throw new Error(data.message || 'Subscription failed');
