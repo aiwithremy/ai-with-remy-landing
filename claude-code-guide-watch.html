@@ -114,7 +114,52 @@
 
     /* Video Container */
     .watch-video {
-      margin-bottom: 0;
+      margin-bottom: var(--space-8);
+    }
+
+    @media (min-width: 810px) {
+      .watch-video {
+        margin-bottom: var(--space-10);
+      }
+    }
+
+    /* Newsletter Callout */
+    .watch-callout {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: var(--space-5) var(--space-6);
+      background: var(--color-accent-light);
+      border: 1px solid var(--color-accent);
+      border-radius: var(--radius-md);
+      text-align: left;
+    }
+
+    .watch-callout__header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-3);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-accent);
+    }
+
+    .watch-callout__icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .watch-callout__text {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .watch-callout__text strong {
+      color: var(--color-text);
     }
   </style>
 </head>
@@ -159,6 +204,20 @@
               <wistia-player media-id="cq9826bux0" aspect="1.7777777777777777"></wistia-player>
             </div>
           </div>
+        </div>
+
+        <!-- Newsletter Callout -->
+        <div class="watch-callout fade-in">
+          <div class="watch-callout__header">
+            <svg class="watch-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            See you Thursday
+          </div>
+          <p class="watch-callout__text">
+            <strong>You're now on the list.</strong> Every Thursday, I'll send you the AI workflows, tools, and playbooks I use to build my brand and scale faster. No fluff, just what's working.
+          </p>
         </div>
       </div>
     </main>
