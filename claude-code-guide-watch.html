@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Watch the Claude Code tutorial — build a real, functional landing page from idea to live website in 30 minutes.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Watch: Claude Code Tutorial | AI with Remy">
+  <meta property="og:description" content="Build a real, functional landing page from idea to live website in 30 minutes with Claude Code.">
+  <meta property="og:type" content="website">
+
+  <title>Watch: Claude Code Tutorial | AI with Remy</title>
+
+  <!-- Favicons with light/dark mode support -->
+  <link rel="icon" href="/Website assets/favicon-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="/Website assets/favicon-dark.png" media="(prefers-color-scheme: dark)">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* Watch Page Specific Styles */
+    .page-wrapper--watch {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .watch-hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-8) 0;
+    }
+
+    @media (min-width: 810px) {
+      .watch-hero {
+        padding: var(--space-10) 0;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .watch-hero {
+        padding: var(--space-12) 0;
+      }
+    }
+
+    /* Thank You Badge */
+    .watch-hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-4);
+      padding: var(--space-1) var(--space-4);
+      background: var(--color-accent-light);
+      border: 1px solid var(--color-accent);
+      border-radius: var(--radius-lg);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-accent);
+    }
+
+    .watch-hero__badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--color-accent);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* Headline */
+    .watch-hero__headline {
+      margin-bottom: var(--space-4);
+      font-family: 'PP Neue Bit', var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      color: var(--color-text);
+    }
+
+    @media (min-width: 810px) {
+      .watch-hero__headline {
+        font-size: 2.75rem;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .watch-hero__headline {
+        font-size: 3.25rem;
+      }
+    }
+
+    /* Subhead */
+    .watch-hero__subhead {
+      max-width: 480px;
+      margin: 0 auto var(--space-8);
+      font-size: var(--text-base);
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+    }
+
+    @media (min-width: 810px) {
+      .watch-hero__subhead {
+        font-size: var(--text-md);
+        margin-bottom: var(--space-10);
+      }
+    }
+
+    /* Video Container */
+    .watch-video {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper page-wrapper--watch">
+
+    <!-- =====================================================
+         WATCH HERO SECTION
+         ===================================================== -->
+    <main class="section watch-hero">
+      <div class="container">
+        <!-- Badge -->
+        <div class="watch-hero__badge fade-in">
+          <span class="watch-hero__badge-dot"></span>
+          You're in
+        </div>
+
+        <!-- Headline -->
+        <h1 class="watch-hero__headline fade-in">
+          Your tutorial is ready
+        </h1>
+
+        <!-- Subhead -->
+        <p class="watch-hero__subhead fade-in">
+          Press play and follow along - you'll have a live, functional landing page by the end.
+        </p>
+
+        <!-- Video Container -->
+        <div class="watch-video fade-in">
+          <div class="mac-window">
+            <div class="mac-window__titlebar">
+              <div class="mac-window__dots">
+                <span class="mac-window__dot mac-window__dot--close"></span>
+                <span class="mac-window__dot mac-window__dot--minimize"></span>
+                <span class="mac-window__dot mac-window__dot--maximize"></span>
+              </div>
+            </div>
+            <div class="mac-window__content">
+              <script src="https://fast.wistia.com/player.js" async></script>
+              <script src="https://fast.wistia.com/embed/cq9826bux0.js" async type="module"></script>
+              <style>wistia-player[media-id='cq9826bux0']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/cq9826bux0/swatch'); display: block; filter: blur(5px); padding-top:56.25%; }</style>
+              <wistia-player media-id="cq9826bux0" aspect="1.7777777777777777"></wistia-player>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- =====================================================
+         FOOTER (Minimal)
+         ===================================================== -->
+    <footer class="footer footer--minimal">
+      <div class="container">
+        <p class="footer__copyright text-mono">
+          &copy; 2025 AI WITH REMY. ALL RIGHTS RESERVED.
+        </p>
+      </div>
+    </footer>
+
+    <!-- =====================================================
+         PAGE END ELEMENT (Dither Fade)
+         ===================================================== -->
+    <div class="page-end" aria-hidden="true">
+      <div class="page-end__dither"></div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Hero elements animate immediately with stagger
+      document.querySelectorAll('.watch-hero .fade-in').forEach((el, index) => {
+        el.style.animation = `heroFadeIn 400ms ease-out ${index * 80}ms forwards`;
+      });
+    });
+  </script>
+</body>
+</html>

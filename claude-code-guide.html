@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn Claude Code: From Idea to Live Website in 30 Minutes. The ultimate beginner tutorial for solopreneurs who want to build fast.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Learn Claude Code: From Idea to Live Website in 30 Minutes">
+  <meta property="og:description" content="The ultimate Claude Code beginner tutorial — build a real, functional landing page with no coding experience required.">
+  <meta property="og:type" content="website">
+
+  <title>Learn Claude Code | AI with Remy</title>
+
+  <!-- Favicons with light/dark mode support -->
+  <link rel="icon" href="/Website assets/favicon-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="/Website assets/favicon-dark.png" media="(prefers-color-scheme: dark)">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* Lead Magnet Page Specific Styles */
+    .leadmagnet-hero {
+      position: relative;
+      text-align: center;
+      padding-top: var(--space-10);
+      padding-bottom: var(--space-8);
+      z-index: 1;
+    }
+
+    @media (min-width: 810px) {
+      .leadmagnet-hero {
+        padding-top: var(--space-12);
+        padding-bottom: var(--space-10);
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .leadmagnet-hero {
+        padding-top: var(--space-16);
+        padding-bottom: var(--space-12);
+      }
+    }
+
+    .leadmagnet-hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-5);
+      padding: var(--space-1) var(--space-4);
+      background: var(--color-accent-light);
+      border: 1px solid var(--color-accent);
+      border-radius: var(--radius-lg);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-accent);
+    }
+
+    .leadmagnet-hero__headline {
+      margin-bottom: var(--space-5);
+      font-family: 'PP Neue Bit', var(--font-display);
+      font-size: 2.25rem;
+      font-weight: 700;
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      color: var(--color-text);
+    }
+
+    @media (min-width: 810px) {
+      .leadmagnet-hero__headline {
+        font-size: 3rem;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .leadmagnet-hero__headline {
+        font-size: 3.5rem;
+      }
+    }
+
+    .leadmagnet-hero__subhead {
+      max-width: 520px;
+      margin: 0 auto var(--space-8);
+      font-size: var(--text-base);
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+    }
+
+    @media (min-width: 810px) {
+      .leadmagnet-hero__subhead {
+        font-size: var(--text-md);
+      }
+    }
+
+    /* Standalone Form */
+    .leadmagnet-hero__form {
+      margin-bottom: var(--space-4);
+    }
+
+    .leadmagnet-hero__transparency {
+      max-width: 480px;
+      margin: 0 auto var(--space-8);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    @media (min-width: 810px) {
+      .leadmagnet-hero__transparency {
+        margin-bottom: var(--space-10);
+      }
+    }
+
+    /* Blurred Video Preview */
+    .video-preview {
+      position: relative;
+    }
+
+    .video-preview__blur {
+      position: relative;
+      filter: blur(6px);
+      opacity: 0.85;
+      pointer-events: none;
+    }
+
+    /* Make the blurred content more visible */
+    .video-preview__blur .mac-window__content {
+      background: var(--color-gray-200);
+    }
+
+    .video-preview__blur .video-preview__inner {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #e8e8e8 0%, #d0d0d0 50%, #c8c8c8 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-preview__blur .video-preview__play-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-preview__blur .video-preview__play-icon svg {
+      width: 32px;
+      height: 32px;
+      color: rgba(0, 0, 0, 0.4);
+      margin-left: 4px;
+    }
+
+    .video-preview__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-sm);
+    }
+
+    .video-preview__lock {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-5) var(--space-6);
+      background: var(--color-bg);
+      border: 1px solid var(--color-border-strong);
+      border-radius: var(--radius-md);
+      box-shadow:
+        0 2px 0 0 var(--color-gray-300),
+        0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .video-preview__lock-icon {
+      width: 32px;
+      height: 32px;
+      color: var(--color-text-muted);
+    }
+
+    .video-preview__lock-text {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <!-- =====================================================
+         HERO SECTION
+         ===================================================== -->
+    <header class="section leadmagnet-hero">
+      <div class="container">
+        <!-- Eyebrow -->
+        <div class="leadmagnet-hero__eyebrow fade-in">
+          For solopreneurs who move fast
+        </div>
+
+        <!-- Headline -->
+        <h1 class="leadmagnet-hero__headline fade-in">
+          Learn Claude Code:<br>
+          From Idea to Live Website<br>
+          in 30 Minutes
+        </h1>
+
+        <!-- Subhead -->
+        <p class="leadmagnet-hero__subhead fade-in">
+          I recorded the ultimate Claude Code beginner tutorial — it walks you through building a real, functional landing page with email capture, booking links, or payments. No coding experience required.
+        </p>
+
+        <!-- Signup Form -->
+        <form class="signup-form leadmagnet-hero__form fade-in" action="#" method="POST" data-leadmagnet-form>
+          <label for="leadmagnet-email" class="sr-only">Email address</label>
+          <input
+            type="email"
+            id="leadmagnet-email"
+            name="email"
+            class="signup-form__input"
+            placeholder="Enter your email"
+            required
+            autocomplete="email"
+          >
+          <button type="submit" class="btn btn--primary">
+            Get Instant Access
+          </button>
+        </form>
+
+        <!-- Transparency Line -->
+        <p class="leadmagnet-hero__transparency fade-in">
+          You'll also receive my Thursday newsletter. The AI workflows, tools, and playbooks I use to stay lean and move fast.
+        </p>
+
+        <!-- Blurred Video Preview -->
+        <div class="video-preview fade-in">
+          <div class="video-preview__blur">
+            <div class="mac-window">
+              <div class="mac-window__titlebar">
+                <div class="mac-window__dots">
+                  <span class="mac-window__dot mac-window__dot--close"></span>
+                  <span class="mac-window__dot mac-window__dot--minimize"></span>
+                  <span class="mac-window__dot mac-window__dot--maximize"></span>
+                </div>
+              </div>
+              <div class="mac-window__content">
+                <div class="video-preview__inner">
+                  <div class="video-preview__play-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="video-preview__overlay">
+            <div class="video-preview__lock">
+              <svg class="video-preview__lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <span class="video-preview__lock-text">Enter email to unlock</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main></main>
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__content fade-in">
+          <!-- Logo -->
+          <a href="/" class="footer__logo-link" aria-label="AI with Remy Home">
+            <img
+              src="/Website assets/ai-with-remy-logo.gif"
+              alt="AI with Remy"
+              class="footer__logo"
+            >
+          </a>
+
+          <!-- Navigation Links -->
+          <nav class="footer__nav" aria-label="Footer navigation">
+            <a href="https://aiwithremy.beehiiv.com/archive" class="footer__nav-link text-mono">POST ARCHIVE</a>
+            <a href="https://aiwithremy.beehiiv.com/manifesto" class="footer__nav-link text-mono">MANIFESTO</a>
+            <a href="mailto:remy@aiwithremy.com" class="footer__nav-link text-mono">CONTACT</a>
+          </nav>
+
+          <!-- Social Buttons -->
+          <div class="footer__social" aria-label="Social media links">
+            <a
+              href="https://www.instagram.com/aiwithremy/"
+              class="footer__social-btn btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow on Instagram"
+            >
+              <svg class="footer__social-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a
+              href="https://www.youtube.com/@aiwithremy/"
+              class="footer__social-btn btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Subscribe on YouTube"
+            >
+              <svg class="footer__social-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+              </svg>
+            </a>
+            <a
+              href="https://x.com/remy_gaskell"
+              class="footer__social-btn btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow on X"
+            >
+              <svg class="footer__social-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Copyright & Credit -->
+          <div class="footer__legal">
+            <p class="footer__copyright text-mono">
+              &copy; 2025 AI WITH REMY. ALL RIGHTS RESERVED.
+            </p>
+            <p class="footer__credit text-mono">
+              VIBE CODED BY YOURS TRULY WITH <a href="https://claude.ai/download" class="footer__credit-link" target="_blank" rel="noopener noreferrer">CLAUDE CODE</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =====================================================
+         PAGE END ELEMENT (Dither Fade)
+         ===================================================== -->
+    <div class="page-end" aria-hidden="true">
+      <div class="page-end__dither"></div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // === Scroll Fade-In Animations ===
+      const fadeElements = document.querySelectorAll('.fade-in:not(.leadmagnet-hero .fade-in)');
+
+      const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            fadeObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      fadeElements.forEach(el => fadeObserver.observe(el));
+
+      // Hero elements animate immediately
+      document.querySelectorAll('.leadmagnet-hero .fade-in').forEach((el, index) => {
+        el.style.animation = `heroFadeIn 400ms ease-out ${index * 80}ms forwards`;
+      });
+
+      // === Lead Magnet Form Integration ===
+      document.querySelectorAll('[data-leadmagnet-form]').forEach(form => {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          const email = form.querySelector('input[type="email"]').value;
+          const button = form.querySelector('button[type="submit"]');
+          const originalText = button.textContent;
+
+          // Loading state
+          button.textContent = 'Unlocking...';
+          button.disabled = true;
+
+          try {
+            // Call the subscribe API route
+            const response = await fetch('/api/subscribe', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ email: email })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+              // Success - redirect to watch page
+              window.location.href = '/claude-code-guide-watch';
+            } else {
+              throw new Error(data.error || 'Subscription failed');
+            }
+          } catch (error) {
+            // Error state
+            button.textContent = 'Try Again';
+            console.error('Subscription error:', error);
+
+            // Reset button after 3 seconds
+            setTimeout(() => {
+              button.textContent = originalText;
+              button.disabled = false;
+            }, 3000);
+          }
+        });
+      });
+
+    });
+  </script>
+</body>
+</html>
