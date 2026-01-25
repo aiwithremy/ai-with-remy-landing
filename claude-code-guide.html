@@ -425,6 +425,7 @@
             }
           } catch (error) {
             // Error state
+            playErrorSound();
             button.textContent = 'Try Again';
             console.error('Subscription error:', error);
 
@@ -439,5 +440,6 @@
 
     });
   </script>
+  <script src="js/button-sounds.js"></script>
 </body>
 </html>
