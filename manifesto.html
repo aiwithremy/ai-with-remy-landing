@@ -103,6 +103,29 @@
       max-width: 150px;
       height: auto;
     }
+
+    /* Quick page-load animations */
+    .manifesto-fade {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: manifestoFadeIn 400ms ease-out forwards;
+    }
+
+    @keyframes manifestoFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Staggered delays for each section */
+    .manifesto-fade:nth-child(1) { animation-delay: 0ms; }
+    .manifesto-fade:nth-child(2) { animation-delay: 80ms; }
+    .manifesto-fade:nth-child(3) { animation-delay: 160ms; }
+    .manifesto-fade:nth-child(4) { animation-delay: 240ms; }
+    .manifesto-fade:nth-child(5) { animation-delay: 320ms; }
+    .manifesto-fade:nth-child(6) { animation-delay: 400ms; }
+    .manifesto-fade:nth-child(7) { animation-delay: 480ms; }
   </style>
 </head>
 <body>
@@ -113,7 +136,7 @@
          ===================================================== -->
     <header class="section manifesto-hero">
       <div class="container">
-        <h1 class="manifesto__headline fade-in">Manifesto</h1>
+        <h1 class="manifesto__headline manifesto-fade">Manifesto</h1>
       </div>
     </header>
 
@@ -122,7 +145,9 @@
          ===================================================== -->
     <main class="section manifesto-content">
       <div class="container">
-        <div class="fade-in">
+
+        <!-- Intro Section -->
+        <div class="manifesto-fade">
           <p>We're living through a special time.</p>
 
           <p>Right now, today, you can accomplish more as a single person with less time and less money than entire companies could in the past.</p>
@@ -134,7 +159,10 @@
           <p>Machines are for speed, repetition, and necessity. Humans are for story, novelty, myth, and meaning. AI solves utility so humans can transcend to meaning. I'm optimistic for a future where all the boring, repetitive tasks are handled, and humans can work purely on what's creative, strategic, and fulfilling.</p>
 
           <p>This isn't as radical as it sounds. It's actually a return to something older.</p>
+        </div>
 
+        <!-- Section: What We Call "Normal" Is Actually New -->
+        <div class="manifesto-fade">
           <h2>What We Call "Normal" Is Actually New</h2>
 
           <p>What we call "normal work" is actually a recent invention.</p>
@@ -148,7 +176,10 @@
           <p>This created the modern employee and what Marx called alienation: disconnection from the product, the process, and their own potential. Work stopped being about creation and became about survival. The 9-to-5 was born.</p>
 
           <p>We've spent barely a hundred years in this model, yet we treat it like the natural human condition. It's not. It's an industrial accident. And technology is starting to undo it.</p>
+        </div>
 
+        <!-- Section: The Artisan Returns -->
+        <div class="manifesto-fade">
           <h2>The Artisan Returns</h2>
 
           <p>Today only about 10% of workers are self-employed. But that's changing. AI and the internet have made it possible for one person to do what required entire departments a generation ago.</p>
@@ -162,7 +193,10 @@
           <p>Business is just solving problems. All successful products solve a problem. When AI solves current problems, some industries will die. But in their wake, new problems will emerge, giving birth to new businesses.</p>
 
           <p>The same pattern is playing out with coding. People assumed AI would replace programmers. But coders who learn to use AI can describe what they want in plain language, let AI write the code, and then review the output because they understand what good code looks like. They're fifty times more efficient. The skill didn't become worthless. It became more valuable.</p>
+        </div>
 
+        <!-- Section: AI Amplifies, It Doesn't Replace -->
+        <div class="manifesto-fade">
           <h2>AI Amplifies, It Doesn't Replace</h2>
 
           <p>This is the pattern. AI amplifies human judgment, taste, and vision. It doesn't replace them.</p>
@@ -176,7 +210,10 @@
           <p>AI can generate a beautiful image on command. But there's a huge difference between someone with a vision who uses AI to execute it and someone who just wants a quick image. Many artists use AI for first drafts, then take it into Photoshop to add the tweaks that make it theirs. AI has exposed what really matters in the creative process, and it was never the mechanical execution.</p>
 
           <p>If you can't create art with AI, you were never an artist. You were just good at using a tool like Photoshop. Tools get replaced. Vision and agency do not.</p>
+        </div>
 
+        <!-- Section: The Requirement: Go Deeper, Not Further Away -->
+        <div class="manifesto-fade">
           <h2>The Requirement: Go Deeper, Not Further Away</h2>
 
           <p>When you ask AI to make all the decisions, you get no throughline, no theme, no personality, no vision, no context. That's what creators actually are: context creators, not content creators. The content is meaningless without context, and AI generations are the same.</p>
@@ -192,7 +229,10 @@
           <p>You need to use AI to go deeper into the process, not to escape it. The people who succeed with AI use it to understand their craft better, to question their assumptions, to iterate faster. The people who get stuck are trying to use AI to avoid the work entirely.</p>
 
           <p>Nothing has fundamentally changed. People just hate what's new, and that new is shining a light on what mattered all along.</p>
+        </div>
 
+        <!-- Section: The Future Is Self-Directed -->
+        <div class="manifesto-fade">
           <h2>The Future Is Self-Directed</h2>
 
           <p>I'm optimistic for a future where all the boring, repetitive tasks are handled, and humans can work purely on what's creative, strategic, and fulfilling.</p>
@@ -212,6 +252,7 @@
             class="manifesto__signature"
           >
         </div>
+
       </div>
     </main>
 
@@ -220,7 +261,7 @@
          ===================================================== -->
     <footer class="footer">
       <div class="container">
-        <div class="footer__content fade-in">
+        <div class="footer__content manifesto-fade">
           <!-- Logo -->
           <a href="/" class="footer__logo-link" aria-label="AI with Remy Home">
             <img
@@ -299,28 +340,6 @@
 
   </div>
 
-  <!-- =====================================================
-       JAVASCRIPT
-       ===================================================== -->
-  <script>
-    // Fade-in animations on scroll
-    document.addEventListener('DOMContentLoaded', function() {
-      const fadeElements = document.querySelectorAll('.fade-in');
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      });
-
-      fadeElements.forEach(el => observer.observe(el));
-    });
-  </script>
   <script src="js/button-sounds.js"></script>
 </body>
 </html>
