@@ -23,20 +23,20 @@
     .manifesto-hero {
       text-align: center;
       padding-top: var(--space-10);
-      padding-bottom: var(--space-6);
+      padding-bottom: var(--space-4);
     }
 
     @media (min-width: 810px) {
       .manifesto-hero {
         padding-top: var(--space-12);
-        padding-bottom: var(--space-8);
+        padding-bottom: var(--space-5);
       }
     }
 
     @media (min-width: 1200px) {
       .manifesto-hero {
         padding-top: var(--space-16);
-        padding-bottom: var(--space-10);
+        padding-bottom: var(--space-6);
       }
     }
 
@@ -84,8 +84,17 @@
       font-size: var(--text-xl);
       font-weight: 600;
       color: var(--color-text);
-      margin-top: var(--space-8);
+      margin-top: 0;
       margin-bottom: var(--space-4);
+    }
+
+    /* Spacing between sections */
+    .manifesto-content .manifesto-fade {
+      margin-bottom: var(--space-10);
+    }
+
+    .manifesto-content .manifesto-fade:last-child {
+      margin-bottom: 0;
     }
 
     @media (min-width: 810px) {
@@ -95,6 +104,10 @@
 
       .manifesto-content h2 {
         font-size: var(--text-2xl);
+      }
+
+      .manifesto-content .manifesto-fade {
+        margin-bottom: var(--space-12);
       }
     }
 
