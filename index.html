@@ -590,13 +590,19 @@
           button.disabled = true;
 
           try {
+            // Get attribution data
+            const attributionData = window.getAttributionData ? window.getAttributionData() : {};
+
             // Call our own API route (which then calls Beehiiv securely)
             const response = await fetch('/api/subscribe', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
               },
-              body: JSON.stringify({ email: email })
+              body: JSON.stringify({
+                email: email,
+                ...attributionData
+              })
             });
 
             const data = await response.json();
@@ -624,6 +630,7 @@
 
     });
   </script>
+  <script src="js/attribution-tracking.js"></script>
   <script src="js/button-sounds.js"></script>
 </body>
 </html>

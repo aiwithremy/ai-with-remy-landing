@@ -6,8 +6,8 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // Get email from the request body
-  const { email } = req.body;
+  // Get email and attribution data from the request body
+  const { email, utm_source, utm_medium, utm_campaign, referring_site } = req.body;
 
   if (!email) {
     return res.status(400).json({ error: 'Email is required' });
@@ -23,6 +23,18 @@ export default async function handler(req, res) {
   }
 
   try {
+    // Build request body with attribution data
+    const requestBody = {
+      email: email,
+      send_welcome_email: true
+    };
+
+    // Add attribution fields if provided
+    if (utm_source) requestBody.utm_source = utm_source;
+    if (utm_medium) requestBody.utm_medium = utm_medium;
+    if (utm_campaign) requestBody.utm_campaign = utm_campaign;
+    if (referring_site) requestBody.referring_site = referring_site;
+
     // Call Beehiiv API from the server (no CORS issues here!)
     const response = await fetch(
       `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUB_ID}/subscriptions`,
@@ -32,10 +44,7 @@ export default async function handler(req, res) {
           'Authorization': `Bearer ${BEEHIIV_API_KEY}`,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          email: email,
-          send_welcome_email: true
-        })
+        body: JSON.stringify(requestBody)
       }
     );
 
