@@ -145,128 +145,115 @@
     }
 
     /* =====================================================
-       SOLUTION SECTION - Blueprint Design
+       SOLUTION SECTION - Zigzag Feature Layout
        ===================================================== */
-    .blueprint {
-      border: 2px solid var(--color-accent);
+    .approach-section {
+      background: var(--color-gray-100);
+    }
+
+    .approach-section .container {
+      max-width: 840px;
+    }
+
+    .approach-grid {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    @media (min-width: 810px) {
+      .approach-grid {
+        gap: var(--space-10);
+      }
+    }
+
+    .approach-item {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+      align-items: center;
+    }
+
+    @media (min-width: 810px) {
+      .approach-item {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-6);
+      }
+
+      /* Zigzag: even items flip order */
+      .approach-item:nth-child(even) .approach-item__image {
+        order: 2;
+      }
+
+      .approach-item:nth-child(even) .approach-item__content {
+        order: 1;
+      }
+    }
+
+    .approach-item__image {
+      aspect-ratio: 4 / 3;
+      background: var(--color-gray-300);
       border-radius: var(--radius-md);
-      background: var(--color-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
     }
 
-    .blueprint__header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: var(--space-3) var(--space-4);
-      background: var(--color-accent);
-      color: var(--color-bg);
-    }
-
-    .blueprint__label {
+    .approach-item__image-placeholder {
       font-family: var(--font-mono);
       font-size: var(--text-xs);
-      font-weight: 700;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
       letter-spacing: 0.05em;
     }
 
-    .blueprint__version {
-      font-family: var(--font-mono);
-      font-size: var(--text-xs);
-      opacity: 0.8;
-    }
-
-    .blueprint__grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0;
-    }
-
-    @media (min-width: 810px) {
-      .blueprint__grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    .blueprint__spec {
-      padding: var(--space-5);
-      border-bottom: 1px solid var(--color-accent-light);
-      border-right: none;
-      position: relative;
-    }
-
-    @media (min-width: 810px) {
-      .blueprint__spec {
-        padding: var(--space-6);
-      }
-
-      .blueprint__spec:nth-child(odd) {
-        border-right: 1px solid var(--color-accent-light);
-      }
-
-      .blueprint__spec:nth-child(3),
-      .blueprint__spec:nth-child(4) {
-        border-bottom: none;
-      }
-    }
-
-    .blueprint__spec:last-child {
-      border-bottom: none;
-    }
-
-    @media (max-width: 809px) {
-      .blueprint__spec:nth-child(3) {
-        border-bottom: 1px solid var(--color-accent-light);
-      }
-    }
-
-    .blueprint__spec-header {
+    .approach-item__content {
       display: flex;
-      align-items: center;
-      gap: var(--space-2);
-      margin-bottom: var(--space-3);
+      flex-direction: column;
+      gap: var(--space-3);
     }
 
-    .blueprint__spec-num {
+    .approach-item__badge {
+      display: inline-flex;
+      align-self: flex-start;
+      padding: var(--space-1) var(--space-3);
       font-family: var(--font-mono);
       font-size: var(--text-xs);
-      color: var(--color-accent);
       font-weight: 700;
-    }
-
-    .blueprint__spec-tag {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--color-text-muted);
-      padding: 2px 6px;
-      background: var(--color-gray-100);
-      border-radius: 2px;
+      letter-spacing: 0.05em;
+      color: var(--color-accent);
+      background: var(--color-bg);
+      border: 1px solid var(--color-accent);
+      border-radius: var(--radius-sm);
     }
 
-    .blueprint__spec-title {
+    .approach-item__title {
       font-family: var(--font-body);
       font-size: var(--text-lg);
       font-weight: 600;
       color: var(--color-text);
-      margin-bottom: var(--space-2);
+      line-height: 1.3;
     }
 
-    .blueprint__spec-desc {
+    @media (min-width: 810px) {
+      .approach-item__title {
+        font-size: var(--text-xl);
+      }
+    }
+
+    .approach-item__desc {
       font-size: var(--text-base);
       color: var(--color-text-secondary);
-      line-height: 1.6;
+      line-height: 1.7;
       margin: 0;
     }
 
-    /* Hover state for blueprint specs */
-    .blueprint__spec:hover .blueprint__spec-num {
-      background: var(--color-accent);
-      color: var(--color-bg);
-      padding: 2px 4px;
-      border-radius: 2px;
-      margin-left: -4px;
+    @media (min-width: 810px) {
+      .approach-item__desc {
+        font-size: var(--text-md);
+      }
     }
 
     /* Who This Is For Section */
@@ -336,69 +323,201 @@
       margin-bottom: var(--space-8);
     }
 
-    .inside-main {
-      margin-bottom: var(--space-6);
+    /* Core Product Card */
+    .core-product {
+      margin-bottom: var(--space-8);
+      border: 2px solid var(--color-accent);
+      border-radius: var(--radius-md);
+      overflow: hidden;
     }
 
-    .inside-main__header {
+    .core-product__header {
       display: flex;
-      align-items: baseline;
-      gap: var(--space-3);
-      margin-bottom: var(--space-4);
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-3) var(--space-5);
+      background: var(--color-accent);
+      color: var(--color-bg);
     }
 
-    .inside-main__label {
+    .core-product__label {
       font-family: var(--font-mono);
       font-size: var(--text-xs);
-      text-transform: uppercase;
+      font-weight: 700;
       letter-spacing: 0.05em;
-      color: var(--color-accent);
-      background: var(--color-accent-light);
-      padding: var(--space-1) var(--space-2);
-      border-radius: var(--radius-sm);
+      text-transform: uppercase;
     }
 
-    .inside-main__title {
+    .core-product__format {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      opacity: 0.8;
+    }
+
+    .core-product__body {
+      padding: var(--space-6);
+    }
+
+    .core-product__title {
       font-family: var(--font-body);
-      font-size: var(--text-lg);
+      font-size: var(--text-xl);
       font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: var(--space-2);
+    }
+
+    .core-product__subtitle {
+      font-size: var(--text-base);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-5);
+    }
+
+    .core-product__features {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+
+    @media (min-width: 810px) {
+      .core-product__features {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-4) var(--space-6);
+      }
+    }
+
+    .core-product__feature {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+    }
+
+    .core-product__feature-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--color-accent);
+      background: var(--color-accent-light);
+      border-radius: 50%;
+      margin-top: 2px;
+    }
+
+    .core-product__feature-text {
+      font-size: var(--text-base);
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+
+    .core-product__feature-text strong {
       color: var(--color-text);
     }
 
-    .inside-main__list {
+    /* Free Bonuses Banner */
+    .inside-bonuses__banner {
       display: flex;
-      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       gap: var(--space-2);
-      padding-left: var(--space-4);
+      padding: var(--space-3) var(--space-4);
+      margin-bottom: var(--space-5);
+      background: var(--color-accent-light);
+      border: 1px solid var(--color-accent);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-accent);
     }
 
-    .inside-main__list li {
+    .inside-bonuses__banner-icon {
+      font-size: var(--text-md);
+    }
+
+    /* Product Image Placeholder */
+    .product-image {
+      width: 100%;
+      margin-bottom: var(--space-8);
+      border: 1px solid var(--color-border-strong);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--color-gray-100);
+    }
+
+    .product-image__placeholder {
+      aspect-ratio: 16 / 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-text-muted);
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+    }
+
+    .product-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Bonus Cards Grid - Vertical Stack */
+    .bonus-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .bonus-card {
+      padding: var(--space-5);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--color-bg);
+    }
+
+    .bonus-card__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--space-3);
+    }
+
+    .bonus-card__title {
+      font-family: var(--font-body);
+      font-size: var(--text-md);
+      font-weight: 600;
+      color: var(--color-text);
+      line-height: 1.3;
+    }
+
+    .bonus-card__value {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      white-space: nowrap;
+      margin-left: var(--space-2);
+    }
+
+    .bonus-card__value--strike {
+      text-decoration: line-through;
+      color: var(--color-text-muted);
+    }
+
+    .bonus-card__free {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      color: var(--color-accent);
+      margin-left: var(--space-2);
+    }
+
+    .bonus-card__desc {
       font-size: var(--text-base);
       color: var(--color-text-secondary);
       line-height: 1.6;
-      position: relative;
-    }
-
-    .inside-main__list li::before {
-      content: '\2022';
-      position: absolute;
-      left: calc(-1 * var(--space-4));
-      color: var(--color-text-muted);
-    }
-
-    .inside-bonuses__header {
-      display: flex;
-      align-items: baseline;
-      gap: var(--space-3);
-      margin-bottom: var(--space-4);
-    }
-
-    .inside-bonuses__label {
-      font-family: var(--font-mono);
-      font-size: var(--text-xs);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--color-text-muted);
     }
 
     /* Pricing Section */
@@ -738,9 +857,9 @@
       </section>
 
       <!-- =====================================================
-           THE SOLUTION SECTION - Blueprint Specs Design
+           THE SOLUTION SECTION - Zigzag Feature Layout
            ===================================================== -->
-      <section class="section section--solution">
+      <section class="section approach-section">
         <div class="container">
           <h2 class="heading-2 text-center fade-in" style="margin-bottom: var(--space-4);">
             A different approach
@@ -750,52 +869,53 @@
             I spent 35+ hours getting Clawdbot running properly (and securely). Now I've packaged everything into a setup system built around four principles:
           </p>
 
-          <!-- Blueprint Frame -->
-          <div class="blueprint fade-in">
-            <div class="blueprint__header">
-              <span class="blueprint__label">SYSTEM SPECIFICATIONS</span>
-              <span class="blueprint__version">v1.0</span>
+          <!-- Zigzag Feature Grid -->
+          <div class="approach-grid">
+            <!-- Feature 1: VPS-first -->
+            <div class="approach-item fade-in">
+              <div class="approach-item__image">
+                <span class="approach-item__image-placeholder">[Image placeholder]</span>
+              </div>
+              <div class="approach-item__content">
+                <span class="approach-item__badge">01</span>
+                <h3 class="approach-item__title">VPS-first</h3>
+                <p class="approach-item__desc">No Mac Mini. No hardware purchase. $10/month for a cloud server that's always on, accessible from anywhere, and easy to rebuild if something goes wrong.</p>
+              </div>
             </div>
 
-            <div class="blueprint__grid">
-              <!-- Principle 1: VPS-First -->
-              <div class="blueprint__spec">
-                <div class="blueprint__spec-header">
-                  <span class="blueprint__spec-num">[01]</span>
-                  <span class="blueprint__spec-tag">INFRASTRUCTURE</span>
-                </div>
-                <h3 class="blueprint__spec-title">VPS-first</h3>
-                <p class="blueprint__spec-desc">No Mac Mini. No hardware purchase. $10/month for a cloud server that's always on, accessible from anywhere, and easy to rebuild if something goes wrong.</p>
+            <!-- Feature 2: Security-forward -->
+            <div class="approach-item fade-in">
+              <div class="approach-item__image">
+                <span class="approach-item__image-placeholder">[Image placeholder]</span>
               </div>
-
-              <!-- Principle 2: Security-Forward -->
-              <div class="blueprint__spec">
-                <div class="blueprint__spec-header">
-                  <span class="blueprint__spec-num">[02]</span>
-                  <span class="blueprint__spec-tag">SECURITY</span>
-                </div>
-                <h3 class="blueprint__spec-title">Security-forward</h3>
-                <p class="blueprint__spec-desc">Specific, actionable hardening steps. Not "be careful" but "do exactly this." API key protection, prompt injection defense, network isolation, permission lockdowns.</p>
+              <div class="approach-item__content">
+                <span class="approach-item__badge">02</span>
+                <h3 class="approach-item__title">Security-forward</h3>
+                <p class="approach-item__desc">Specific, actionable hardening steps. Not "be careful" but "do exactly this." API key protection, prompt injection defense, network isolation, permission lockdowns.</p>
               </div>
+            </div>
 
-              <!-- Principle 3: Non-Technical -->
-              <div class="blueprint__spec">
-                <div class="blueprint__spec-header">
-                  <span class="blueprint__spec-num">[03]</span>
-                  <span class="blueprint__spec-tag">USABILITY</span>
-                </div>
-                <h3 class="blueprint__spec-title">Non-technical friendly</h3>
-                <p class="blueprint__spec-desc">Plain English explanations of what's happening under the hood. You'll actually understand the system you're running, which means you can troubleshoot when things break.</p>
+            <!-- Feature 3: Non-technical friendly -->
+            <div class="approach-item fade-in">
+              <div class="approach-item__image">
+                <span class="approach-item__image-placeholder">[Image placeholder]</span>
               </div>
+              <div class="approach-item__content">
+                <span class="approach-item__badge">03</span>
+                <h3 class="approach-item__title">Non-technical friendly</h3>
+                <p class="approach-item__desc">Plain English explanations of what's happening under the hood. You'll actually understand the system you're running, which means you can troubleshoot when things break.</p>
+              </div>
+            </div>
 
-              <!-- Principle 4: Cost Optimized -->
-              <div class="blueprint__spec">
-                <div class="blueprint__spec-header">
-                  <span class="blueprint__spec-num">[04]</span>
-                  <span class="blueprint__spec-tag">OPTIMIZATION</span>
-                </div>
-                <h3 class="blueprint__spec-title">Cost-optimized</h3>
-                <p class="blueprint__spec-desc">The right models for the right tasks. Context management that doesn't burn money. Settings that cut API costs by 50-70%.</p>
+            <!-- Feature 4: Cost-optimized -->
+            <div class="approach-item fade-in">
+              <div class="approach-item__image">
+                <span class="approach-item__image-placeholder">[Image placeholder]</span>
+              </div>
+              <div class="approach-item__content">
+                <span class="approach-item__badge">04</span>
+                <h3 class="approach-item__title">Cost-optimized</h3>
+                <p class="approach-item__desc">The right models for the right tasks. Context management that doesn't burn money. Settings that cut API costs by 50-70%.</p>
               </div>
             </div>
           </div>
@@ -847,67 +967,84 @@
             Everything you need to go from zero to running
           </h2>
 
-          <!-- Main Product -->
-          <div class="inside-main fade-in">
-            <div class="inside-main__header">
-              <span class="inside-main__label">The Core</span>
-              <h3 class="inside-main__title">Clawdbot VPS Setup SOP</h3>
+          <!-- Product Image -->
+          <div class="product-image fade-in">
+            <!-- Replace placeholder with: <img src="your-image.png" alt="Clawdbot VPS Setup Guide preview"> -->
+            <div class="product-image__placeholder">
+              [Product image placeholder]
             </div>
-            <p class="text-body" style="color: var(--color-text-secondary); margin-bottom: var(--space-4);">A step-by-step Notion guide that walks you through the entire deployment:</p>
-            <ul class="inside-main__list">
-              <li><strong>VPS provider selection</strong> with best price/performance recommendations</li>
-              <li><strong>Complete installation walkthrough</strong> with screenshots at every step</li>
-              <li><strong>Configuration for your messaging apps</strong> (WhatsApp, Telegram, Discord, and more)</li>
-              <li><strong>Going live checklist</strong> so you don't miss anything critical</li>
-              <li><strong>Lifetime updates</strong> as Clawdbot/OpenClaw evolves</li>
-            </ul>
-            <p class="text-body" style="color: var(--color-text-muted); margin-top: var(--space-4); font-style: italic;">This is everything I learned the hard way, organized so you can follow it in an afternoon.</p>
+          </div>
+
+          <!-- Main Product -->
+          <div class="core-product fade-in">
+            <div class="core-product__header">
+              <span class="core-product__label">The Core</span>
+              <span class="core-product__format">Notion Guide</span>
+            </div>
+            <div class="core-product__body">
+              <h3 class="core-product__title">Clawdbot VPS Setup SOP</h3>
+              <p class="core-product__subtitle">Step-by-step guide to deploy your own Clawdbot in an afternoon.</p>
+              <div class="core-product__features">
+                <div class="core-product__feature">
+                  <span class="core-product__feature-icon">✓</span>
+                  <span class="core-product__feature-text"><strong>VPS provider selection</strong> with price/performance recommendations</span>
+                </div>
+                <div class="core-product__feature">
+                  <span class="core-product__feature-icon">✓</span>
+                  <span class="core-product__feature-text"><strong>Complete installation walkthrough</strong> with screenshots</span>
+                </div>
+                <div class="core-product__feature">
+                  <span class="core-product__feature-icon">✓</span>
+                  <span class="core-product__feature-text"><strong>Messaging app configuration</strong> for WhatsApp, Telegram, Discord</span>
+                </div>
+                <div class="core-product__feature">
+                  <span class="core-product__feature-icon">✓</span>
+                  <span class="core-product__feature-text"><strong>Going live checklist</strong> so you don't miss anything critical</span>
+                </div>
+                <div class="core-product__feature">
+                  <span class="core-product__feature-icon">✓</span>
+                  <span class="core-product__feature-text"><strong>Lifetime updates</strong> as Clawdbot/OpenClaw evolves</span>
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- Bonuses -->
           <div class="inside-bonuses fade-in">
-            <div class="inside-bonuses__header">
-              <span class="inside-bonuses__label">[+] FREE BONUSES</span>
+            <div class="inside-bonuses__banner">
+              <span class="inside-bonuses__banner-icon">+</span>
+              <span>FREE BONUSES INCLUDED</span>
             </div>
 
-            <div class="accordion">
-              <!-- Bonus 1 -->
-              <div class="accordion-item">
-                <button class="accordion-header" aria-expanded="false">
-                  <span>Security Checklist <span style="color: var(--color-text-muted);">(Value: $19)</span></span>
-                  <span class="accordion-icon">[+]</span>
-                </button>
-                <div class="accordion-content">
-                  <p class="accordion-body">
-                    The exact hardening steps to avoid becoming another horror story. Covers API key protection, prompt injection defense, network isolation, and permission lockdowns.<br><br>Nobody wants to be the person whose bot went rogue. This checklist prevents that.
-                  </p>
+            <div class="bonus-grid">
+              <!-- Bonus 1: Security Checklist -->
+              <div class="bonus-card">
+                <div class="bonus-card__header">
+                  <h4 class="bonus-card__title">Security Checklist</h4>
+                  <span class="bonus-card__value bonus-card__value--strike">$19 value</span>
+                  <span class="bonus-card__free">FREE</span>
                 </div>
+                <p class="bonus-card__desc">The exact hardening steps to avoid becoming another horror story. Covers API key protection, prompt injection defense, network isolation, and permission lockdowns.</p>
               </div>
 
-              <!-- Bonus 2 -->
-              <div class="accordion-item">
-                <button class="accordion-header" aria-expanded="false">
-                  <span>Model Optimization Guide <span style="color: var(--color-text-muted);">(Value: $19)</span></span>
-                  <span class="accordion-icon">[+]</span>
-                </button>
-                <div class="accordion-content">
-                  <p class="accordion-body">
-                    Which models for which tasks. Context management that doesn't waste tokens. The settings that cut API costs by 50-70%.<br><br>Stop burning $10-20/day on suboptimal configs.
-                  </p>
+              <!-- Bonus 2: Model Optimization Guide -->
+              <div class="bonus-card">
+                <div class="bonus-card__header">
+                  <h4 class="bonus-card__title">Model Optimization Guide</h4>
+                  <span class="bonus-card__value bonus-card__value--strike">$19 value</span>
+                  <span class="bonus-card__free">FREE</span>
                 </div>
+                <p class="bonus-card__desc">Which models for which tasks. Context management that doesn't waste tokens. The settings that cut API costs by 50-70%.</p>
               </div>
 
-              <!-- Bonus 3 -->
-              <div class="accordion-item">
-                <button class="accordion-header" aria-expanded="false">
-                  <span>Backend Breakdown for Non-Technical Users <span style="color: var(--color-text-muted);">(Value: $15)</span></span>
-                  <span class="accordion-icon">[+]</span>
-                </button>
-                <div class="accordion-content">
-                  <p class="accordion-body">
-                    Plain-English explanation of what's actually happening under the hood when you use Clawdbot.<br><br>When things break (and they will), you'll know where to look. When you want to customize something, you'll understand what you're changing.
-                  </p>
+              <!-- Bonus 3: Backend Breakdown -->
+              <div class="bonus-card">
+                <div class="bonus-card__header">
+                  <h4 class="bonus-card__title">Backend Breakdown</h4>
+                  <span class="bonus-card__value bonus-card__value--strike">$15 value</span>
+                  <span class="bonus-card__free">FREE</span>
                 </div>
+                <p class="bonus-card__desc">Plain-English explanation of what's actually happening under the hood. When things break, you'll know where to look.</p>
               </div>
             </div>
           </div>
