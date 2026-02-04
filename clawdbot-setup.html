@@ -151,33 +151,29 @@
       background: var(--color-gray-100);
     }
 
-    .approach-section .container {
-      max-width: 840px;
-    }
-
     .approach-grid {
       display: flex;
       flex-direction: column;
-      gap: var(--space-8);
+      gap: var(--space-6);
     }
 
     @media (min-width: 810px) {
       .approach-grid {
-        gap: var(--space-10);
+        gap: var(--space-8);
       }
     }
 
     .approach-item {
       display: grid;
       grid-template-columns: 1fr;
-      gap: var(--space-5);
+      gap: var(--space-4);
       align-items: center;
     }
 
     @media (min-width: 810px) {
       .approach-item {
-        grid-template-columns: 1fr 1fr;
-        gap: var(--space-6);
+        grid-template-columns: 200px 1fr;
+        gap: var(--space-5);
       }
 
       /* Zigzag: even items flip order */
@@ -188,16 +184,21 @@
       .approach-item:nth-child(even) .approach-item__content {
         order: 1;
       }
+
+      .approach-item:nth-child(even) {
+        grid-template-columns: 1fr 200px;
+      }
     }
 
     .approach-item__image {
       aspect-ratio: 4 / 3;
       background: var(--color-gray-300);
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      max-width: 200px;
     }
 
     .approach-item__image-placeholder {
@@ -231,7 +232,7 @@
 
     .approach-item__title {
       font-family: var(--font-body);
-      font-size: var(--text-lg);
+      font-size: var(--text-md);
       font-weight: 600;
       color: var(--color-text);
       line-height: 1.3;
@@ -239,7 +240,7 @@
 
     @media (min-width: 810px) {
       .approach-item__title {
-        font-size: var(--text-xl);
+        font-size: var(--text-lg);
       }
     }
 
@@ -248,12 +249,6 @@
       color: var(--color-text-secondary);
       line-height: 1.7;
       margin: 0;
-    }
-
-    @media (min-width: 810px) {
-      .approach-item__desc {
-        font-size: var(--text-md);
-      }
     }
 
     /* Who This Is For Section */
