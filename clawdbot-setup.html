@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Skip the $500 Mac Mini. Run Clawdbot on a $10/month VPS—without getting hacked. Step-by-step setup guide for non-technical users.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Clawdbot VPS Setup - No Mac Mini Required">
+  <meta property="og:description" content="Skip the $500 Mac Mini. Run Clawdbot on a $10/month VPS—without getting hacked.">
+  <meta property="og:type" content="website">
+
+  <title>Clawdbot VPS Setup | AI with Remy</title>
+
+  <!-- Favicons with light/dark mode support -->
+  <link rel="icon" href="/Website assets/favicon-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="/Website assets/favicon-dark.png" media="(prefers-color-scheme: dark)">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* =====================================================
+       CLAWDBOT LANDING PAGE - SPECIFIC STYLES
+       ===================================================== */
+
+    /* Hero Social Proof (stacked below CTA) */
+    .hero__proof {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+    }
+
+    .proof-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    .proof-item__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+    }
+
+    .proof-item__icon svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* =====================================================
+       PROBLEM SECTION - Stacked Walls Design
+       ===================================================== */
+    .walls-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .wall-block {
+      display: flex;
+      border: 1px solid var(--color-border-strong);
+      border-bottom: none;
+      background: var(--color-bg);
+    }
+
+    .wall-block:first-child {
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    }
+
+    .wall-block:last-child {
+      border-bottom: 1px solid var(--color-border-strong);
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    }
+
+    .wall-block__number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 48px;
+      padding: var(--space-4);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      color: var(--color-text-muted);
+      background: var(--color-gray-100);
+      border-right: 1px solid var(--color-border);
+    }
+
+    @media (min-width: 810px) {
+      .wall-block__number {
+        min-width: 64px;
+        font-size: var(--text-sm);
+      }
+    }
+
+    .wall-block__content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: var(--space-4) var(--space-5);
+      gap: var(--space-3);
+    }
+
+    @media (min-width: 810px) {
+      .wall-block__content {
+        padding: var(--space-5) var(--space-6);
+      }
+    }
+
+    .wall-block__text {
+      flex: 1;
+    }
+
+    .wall-block__title {
+      font-family: var(--font-body);
+      font-size: var(--text-md);
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: var(--space-2);
+    }
+
+    .wall-block__desc {
+      font-size: var(--text-base);
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Hover state for walls */
+    .wall-block:hover {
+      background: var(--color-gray-100);
+    }
+
+    .wall-block:hover .wall-block__number {
+      color: var(--color-text-secondary);
+      background: var(--color-gray-200);
+    }
+
+    /* =====================================================
+       SOLUTION SECTION - Blueprint Design
+       ===================================================== */
+    .blueprint {
+      border: 2px solid var(--color-accent);
+      border-radius: var(--radius-md);
+      background: var(--color-bg);
+      overflow: hidden;
+    }
+
+    .blueprint__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-3) var(--space-4);
+      background: var(--color-accent);
+      color: var(--color-bg);
+    }
+
+    .blueprint__label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .blueprint__version {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      opacity: 0.8;
+    }
+
+    .blueprint__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    @media (min-width: 810px) {
+      .blueprint__grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .blueprint__spec {
+      padding: var(--space-5);
+      border-bottom: 1px solid var(--color-accent-light);
+      border-right: none;
+      position: relative;
+    }
+
+    @media (min-width: 810px) {
+      .blueprint__spec {
+        padding: var(--space-6);
+      }
+
+      .blueprint__spec:nth-child(odd) {
+        border-right: 1px solid var(--color-accent-light);
+      }
+
+      .blueprint__spec:nth-child(3),
+      .blueprint__spec:nth-child(4) {
+        border-bottom: none;
+      }
+    }
+
+    .blueprint__spec:last-child {
+      border-bottom: none;
+    }
+
+    @media (max-width: 809px) {
+      .blueprint__spec:nth-child(3) {
+        border-bottom: 1px solid var(--color-accent-light);
+      }
+    }
+
+    .blueprint__spec-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-3);
+    }
+
+    .blueprint__spec-num {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-accent);
+      font-weight: 700;
+    }
+
+    .blueprint__spec-tag {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      padding: 2px 6px;
+      background: var(--color-gray-100);
+      border-radius: 2px;
+    }
+
+    .blueprint__spec-title {
+      font-family: var(--font-body);
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: var(--space-2);
+    }
+
+    .blueprint__spec-desc {
+      font-size: var(--text-base);
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Hover state for blueprint specs */
+    .blueprint__spec:hover .blueprint__spec-num {
+      background: var(--color-accent);
+      color: var(--color-bg);
+      padding: 2px 4px;
+      border-radius: 2px;
+      margin-left: -4px;
+    }
+
+    /* Who This Is For Section */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+
+    @media (min-width: 810px) {
+      .audience-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-6);
+      }
+    }
+
+    .audience-card {
+      text-align: left;
+    }
+
+    .audience-card__header {
+      margin-bottom: var(--space-4);
+    }
+
+    .audience-card__title {
+      font-family: var(--font-body);
+      font-size: var(--text-md);
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    .audience-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .audience-list li {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-2);
+      font-size: var(--text-base);
+      color: var(--color-text-secondary);
+      line-height: 1.45;
+    }
+
+    .audience-list li::before {
+      content: '';
+      flex-shrink: 0;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .audience-card--for .audience-list li::before {
+      content: '\2713';
+      color: #22a366;
+    }
+
+    .audience-card--not .audience-list li::before {
+      content: '\00D7';
+      font-size: 15px;
+      color: #d94f4f;
+    }
+
+    /* What's Inside Section */
+    .inside-section__title {
+      margin-bottom: var(--space-8);
+    }
+
+    .inside-main {
+      margin-bottom: var(--space-6);
+    }
+
+    .inside-main__header {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+
+    .inside-main__label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-accent);
+      background: var(--color-accent-light);
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--radius-sm);
+    }
+
+    .inside-main__title {
+      font-family: var(--font-body);
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    .inside-main__list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      padding-left: var(--space-4);
+    }
+
+    .inside-main__list li {
+      font-size: var(--text-base);
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      position: relative;
+    }
+
+    .inside-main__list li::before {
+      content: '\2022';
+      position: absolute;
+      left: calc(-1 * var(--space-4));
+      color: var(--color-text-muted);
+    }
+
+    .inside-bonuses__header {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+
+    .inside-bonuses__label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-muted);
+    }
+
+    /* Pricing Section */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+
+    @media (min-width: 810px) {
+      .pricing-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-6);
+        /* Break out of container and center relative to viewport */
+        width: 90vw;
+        max-width: 720px;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .pricing-grid {
+        max-width: 780px;
+      }
+    }
+
+    .pricing-card {
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-6);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      /* Prevent content from forcing unequal widths */
+      min-width: 0;
+    }
+
+    .pricing-card--featured {
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 1px var(--color-accent);
+    }
+
+    .pricing-card__badge {
+      display: inline-flex;
+      align-self: center;
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--space-4);
+    }
+
+    .pricing-card--featured .pricing-card__badge {
+      background: var(--color-accent-light);
+      color: var(--color-accent);
+    }
+
+    .pricing-card:not(.pricing-card--featured) .pricing-card__badge {
+      background: var(--color-gray-200);
+      color: var(--color-text-secondary);
+    }
+
+    .pricing-card__name {
+      font-family: var(--font-body);
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: var(--space-2);
+    }
+
+    .pricing-card__price {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: var(--space-1);
+      margin-bottom: var(--space-4);
+    }
+
+    .pricing-card__amount {
+      font-family: 'PP Neue Bit', var(--font-display);
+      font-size: 3rem;
+      line-height: 1;
+      color: var(--color-text);
+    }
+
+    .pricing-card__currency {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+
+    .pricing-card__desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-5);
+      line-height: 1.5;
+    }
+
+    .pricing-card__features {
+      text-align: left;
+      margin-bottom: var(--space-6);
+      flex: 1;
+    }
+
+    .pricing-card__features li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      font-size: var(--text-base);
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid var(--color-gray-200);
+    }
+
+    .pricing-card__features li:last-child {
+      border-bottom: none;
+    }
+
+    .pricing-card__features li::before {
+      content: '\2713';
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--color-accent);
+      background: var(--color-accent-light);
+      border-radius: 50%;
+      margin-top: 2px;
+    }
+
+    .pricing-card__cta {
+      margin-top: auto;
+    }
+
+    .pricing-card__cta .btn {
+      width: 100%;
+    }
+
+    .pricing-card--featured .pricing-card__cta .btn {
+      background: var(--color-accent);
+      color: var(--color-bg);
+      border-color: var(--color-accent);
+    }
+
+    .pricing-card--featured .pricing-card__cta .btn:hover {
+      background: rgb(50, 50, 220);
+    }
+
+    /* Value Stack */
+    .value-stack {
+      margin-top: var(--space-8);
+      text-align: center;
+    }
+
+    .value-stack__title {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-4);
+    }
+
+    .value-stack__table {
+      max-width: 360px;
+      margin: 0 auto;
+    }
+
+    .value-stack__row {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid var(--color-gray-200);
+      font-size: var(--text-sm);
+    }
+
+    .value-stack__row:last-child {
+      border-bottom: none;
+    }
+
+    .value-stack__item {
+      color: var(--color-text-secondary);
+    }
+
+    .value-stack__price {
+      color: var(--color-text-muted);
+    }
+
+    .value-stack__price--strike {
+      text-decoration: line-through;
+    }
+
+    .value-stack__price--free {
+      color: var(--color-accent);
+      font-weight: 600;
+    }
+
+    .value-stack__total {
+      font-weight: 600;
+      color: var(--color-text);
+      margin-top: var(--space-2);
+      padding-top: var(--space-3);
+      border-top: 2px solid var(--color-text);
+    }
+
+    .value-stack__total .value-stack__price {
+      color: var(--color-accent);
+      font-weight: 700;
+    }
+
+    /* FAQ Section specific */
+    .faq-section__title {
+      margin-bottom: var(--space-8);
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <!-- =====================================================
+         HERO SECTION (with integrated social proof)
+         ===================================================== -->
+    <header class="section hero">
+      <div class="container">
+        <!-- Badge -->
+        <div class="hero__badge text-mono fade-in">
+          CLAWDBOT SETUP
+        </div>
+
+        <!-- Pixelated Headline -->
+        <h1 class="hero__headline fade-in">
+          Set up your own Clawdbot for $10/month<br>
+          without buying a Mac Mini or getting hacked
+        </h1>
+
+        <!-- Subtext -->
+        <p class="text-body hero__subtext fade-in">
+          The complete blueprint to deploy Clawdbot on a VPS, secured and optimized from day one, even if you're not technical.
+        </p>
+
+        <!-- CTA -->
+        <div class="hero__cta fade-in">
+          <a href="#whats-inside" class="btn btn--large btn--primary">
+            See What's Inside ↓
+          </a>
+        </div>
+
+        <!-- Social Proof (stacked below CTA) -->
+        <div class="hero__proof fade-in">
+          <span class="proof-item">
+            <span class="proof-item__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </span>
+            I spent 25+ hours figuring this out so you don't have to
+          </span>
+          <span class="proof-item">
+            <span class="proof-item__icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </span>
+            160k+ GitHub stars and counting
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- =====================================================
+           THE PROBLEM SECTION - Stacked Walls Design
+           ===================================================== -->
+      <section class="section section--problem">
+        <div class="container">
+          <h2 class="heading-2 text-center fade-in" style="margin-bottom: var(--space-8);">
+            Four walls between you and a working AI assistant
+          </h2>
+
+          <div class="walls-stack">
+            <!-- Wall 1: Hardware Cost -->
+            <div class="wall-block fade-in">
+              <div class="wall-block__number">01</div>
+              <div class="wall-block__content">
+                <div class="wall-block__text">
+                  <h3 class="wall-block__title">The $500 hardware assumption</h3>
+                  <p class="wall-block__desc">The "official" setup guide tells you to buy a dedicated Mac Mini. Just to try this. Most people don't have $500 lying around for an experiment.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Wall 2: Security -->
+            <div class="wall-block fade-in">
+              <div class="wall-block__number">02</div>
+              <div class="wall-block__content">
+                <div class="wall-block__text">
+                  <h3 class="wall-block__title">Security is a minefield</h3>
+                  <p class="wall-block__desc">This isn't hypothetical. Hundreds of exposed Clawdbot instances have been found online with API keys visible to anyone looking. Someone's bot deleted all their emails after reading hidden malicious instructions. Another autonomously purchased a $2,000 course nobody asked for.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Wall 3: Complexity -->
+            <div class="wall-block fade-in">
+              <div class="wall-block__number">03</div>
+              <div class="wall-block__content">
+                <div class="wall-block__text">
+                  <h3 class="wall-block__title">The docs assume you're a developer</h3>
+                  <p class="wall-block__desc">If you don't know what a "daemon" or "cron job" is, the official documentation becomes a wall. You'll hit terms and steps that assume you already know things nobody explained.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Wall 4: Cost Spiral -->
+            <div class="wall-block fade-in">
+              <div class="wall-block__number">04</div>
+              <div class="wall-block__content">
+                <div class="wall-block__text">
+                  <h3 class="wall-block__title">API costs spiral fast</h3>
+                  <p class="wall-block__desc">People are burning $10-20/day on API calls because they picked the wrong models, bloated their context windows, or just never configured things properly. That's $300-600/month. For most people, that kills the whole point.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           THE SOLUTION SECTION - Blueprint Specs Design
+           ===================================================== -->
+      <section class="section section--solution">
+        <div class="container">
+          <h2 class="heading-2 text-center fade-in" style="margin-bottom: var(--space-4);">
+            A different approach
+          </h2>
+
+          <p class="text-body text-center fade-in" style="margin-bottom: var(--space-8); max-width: 600px; margin-left: auto; margin-right: auto; color: var(--color-text-secondary);">
+            I spent 35+ hours getting Clawdbot running properly (and securely). Now I've packaged everything into a setup system built around four principles:
+          </p>
+
+          <!-- Blueprint Frame -->
+          <div class="blueprint fade-in">
+            <div class="blueprint__header">
+              <span class="blueprint__label">SYSTEM SPECIFICATIONS</span>
+              <span class="blueprint__version">v1.0</span>
+            </div>
+
+            <div class="blueprint__grid">
+              <!-- Principle 1: VPS-First -->
+              <div class="blueprint__spec">
+                <div class="blueprint__spec-header">
+                  <span class="blueprint__spec-num">[01]</span>
+                  <span class="blueprint__spec-tag">INFRASTRUCTURE</span>
+                </div>
+                <h3 class="blueprint__spec-title">VPS-first</h3>
+                <p class="blueprint__spec-desc">No Mac Mini. No hardware purchase. $10/month for a cloud server that's always on, accessible from anywhere, and easy to rebuild if something goes wrong.</p>
+              </div>
+
+              <!-- Principle 2: Security-Forward -->
+              <div class="blueprint__spec">
+                <div class="blueprint__spec-header">
+                  <span class="blueprint__spec-num">[02]</span>
+                  <span class="blueprint__spec-tag">SECURITY</span>
+                </div>
+                <h3 class="blueprint__spec-title">Security-forward</h3>
+                <p class="blueprint__spec-desc">Specific, actionable hardening steps. Not "be careful" but "do exactly this." API key protection, prompt injection defense, network isolation, permission lockdowns.</p>
+              </div>
+
+              <!-- Principle 3: Non-Technical -->
+              <div class="blueprint__spec">
+                <div class="blueprint__spec-header">
+                  <span class="blueprint__spec-num">[03]</span>
+                  <span class="blueprint__spec-tag">USABILITY</span>
+                </div>
+                <h3 class="blueprint__spec-title">Non-technical friendly</h3>
+                <p class="blueprint__spec-desc">Plain English explanations of what's happening under the hood. You'll actually understand the system you're running, which means you can troubleshoot when things break.</p>
+              </div>
+
+              <!-- Principle 4: Cost Optimized -->
+              <div class="blueprint__spec">
+                <div class="blueprint__spec-header">
+                  <span class="blueprint__spec-num">[04]</span>
+                  <span class="blueprint__spec-tag">OPTIMIZATION</span>
+                </div>
+                <h3 class="blueprint__spec-title">Cost-optimized</h3>
+                <p class="blueprint__spec-desc">The right models for the right tasks. Context management that doesn't burn money. Settings that cut API costs by 50-70%.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           WHO THIS IS FOR SECTION
+           ===================================================== -->
+      <section class="section comparison">
+        <div class="container">
+          <h2 class="heading-2 comparison__title fade-in">
+            Is this for you?
+          </h2>
+
+          <div class="comparison__grid">
+            <!-- Not For You Card -->
+            <div class="card comparison__card comparison__card--problem fade-in">
+              <span class="comparison__label">Skip this if...</span>
+              <ul class="comparison__list">
+                <li>You're already comfortable with Linux server administration</li>
+                <li>You want to figure everything out yourself (respect, but this won't help)</li>
+                <li>You're looking for a managed, hosted solution (this is self-hosted)</li>
+                <li>You're not ready to spend $2-5/day on API costs (even optimized, it's not free)</li>
+              </ul>
+            </div>
+
+            <!-- For You Card -->
+            <div class="card comparison__card comparison__card--solution fade-in">
+              <span class="comparison__label comparison__label--highlight">This is for you if...</span>
+              <ul class="comparison__list">
+                <li>You've seen the Clawdbot demos and want it running on your machine</li>
+                <li>You'd rather spend $10/month than $500 on hardware</li>
+                <li>You're not a DevOps engineer (and don't want to become one)</li>
+                <li>You want security handled properly from the start</li>
+                <li>You value your time more than figuring things out through trial and error</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           WHAT'S INSIDE SECTION
+           ===================================================== -->
+      <section class="section" id="whats-inside">
+        <div class="container">
+          <h2 class="heading-2 text-center inside-section__title fade-in">
+            Everything you need to go from zero to running
+          </h2>
+
+          <!-- Main Product -->
+          <div class="inside-main fade-in">
+            <div class="inside-main__header">
+              <span class="inside-main__label">The Core</span>
+              <h3 class="inside-main__title">Clawdbot VPS Setup SOP</h3>
+            </div>
+            <p class="text-body" style="color: var(--color-text-secondary); margin-bottom: var(--space-4);">A step-by-step Notion guide that walks you through the entire deployment:</p>
+            <ul class="inside-main__list">
+              <li><strong>VPS provider selection</strong> with best price/performance recommendations</li>
+              <li><strong>Complete installation walkthrough</strong> with screenshots at every step</li>
+              <li><strong>Configuration for your messaging apps</strong> (WhatsApp, Telegram, Discord, and more)</li>
+              <li><strong>Going live checklist</strong> so you don't miss anything critical</li>
+              <li><strong>Lifetime updates</strong> as Clawdbot/OpenClaw evolves</li>
+            </ul>
+            <p class="text-body" style="color: var(--color-text-muted); margin-top: var(--space-4); font-style: italic;">This is everything I learned the hard way, organized so you can follow it in an afternoon.</p>
+          </div>
+
+          <!-- Bonuses -->
+          <div class="inside-bonuses fade-in">
+            <div class="inside-bonuses__header">
+              <span class="inside-bonuses__label">[+] FREE BONUSES</span>
+            </div>
+
+            <div class="accordion">
+              <!-- Bonus 1 -->
+              <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
+                  <span>Security Checklist <span style="color: var(--color-text-muted);">(Value: $19)</span></span>
+                  <span class="accordion-icon">[+]</span>
+                </button>
+                <div class="accordion-content">
+                  <p class="accordion-body">
+                    The exact hardening steps to avoid becoming another horror story. Covers API key protection, prompt injection defense, network isolation, and permission lockdowns.<br><br>Nobody wants to be the person whose bot went rogue. This checklist prevents that.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Bonus 2 -->
+              <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
+                  <span>Model Optimization Guide <span style="color: var(--color-text-muted);">(Value: $19)</span></span>
+                  <span class="accordion-icon">[+]</span>
+                </button>
+                <div class="accordion-content">
+                  <p class="accordion-body">
+                    Which models for which tasks. Context management that doesn't waste tokens. The settings that cut API costs by 50-70%.<br><br>Stop burning $10-20/day on suboptimal configs.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Bonus 3 -->
+              <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
+                  <span>Backend Breakdown for Non-Technical Users <span style="color: var(--color-text-muted);">(Value: $15)</span></span>
+                  <span class="accordion-icon">[+]</span>
+                </button>
+                <div class="accordion-content">
+                  <p class="accordion-body">
+                    Plain-English explanation of what's actually happening under the hood when you use Clawdbot.<br><br>When things break (and they will), you'll know where to look. When you want to customize something, you'll understand what you're changing.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           PRICING SECTION
+           ===================================================== -->
+      <section class="section" id="pricing">
+        <div class="container">
+          <h2 class="heading-2 text-center fade-in" style="margin-bottom: var(--space-8);">
+            Choose your path
+          </h2>
+
+          <div class="pricing-grid">
+            <!-- DIY Card -->
+            <div class="pricing-card pricing-card--featured fade-in">
+              <span class="pricing-card__badge">Most Popular</span>
+              <h3 class="pricing-card__name">DIY Setup Kit</h3>
+              <div class="pricing-card__price">
+                <span class="pricing-card__currency">$</span>
+                <span class="pricing-card__amount">29</span>
+              </div>
+              <p class="pricing-card__desc">Less than three months of VPS hosting</p>
+              <ul class="pricing-card__features">
+                <li>Clawdbot VPS Setup SOP (step-by-step Notion guide)</li>
+                <li>Security Checklist ($19 value)</li>
+                <li>Model Optimization Guide ($19 value)</li>
+                <li>Backend Breakdown ($15 value)</li>
+                <li>Lifetime updates as Clawdbot/OpenClaw evolves</li>
+                <li>Access to private updates channel</li>
+              </ul>
+              <p style="font-size: var(--text-sm); color: var(--color-text-muted); text-align: center; margin-bottom: var(--space-4);">
+                <strong style="color: var(--color-text-secondary);">Total value: $82</strong> — You pay: <strong style="color: var(--color-accent);">$29</strong><br>
+                <em>Bonuses included free for a limited time.</em>
+              </p>
+              <div class="pricing-card__cta">
+                <a href="#checkout-diy" class="btn btn--primary btn--large">
+                  Get the Blueprint → $29
+                </a>
+              </div>
+            </div>
+
+            <!-- Done-With-You Card -->
+            <div class="pricing-card fade-in">
+              <span class="pricing-card__badge">Fastest Path</span>
+              <h3 class="pricing-card__name">Done-With-You Setup</h3>
+              <div class="pricing-card__price">
+                <span class="pricing-card__currency">$</span>
+                <span class="pricing-card__amount">289</span>
+              </div>
+              <p class="pricing-card__desc">For people who want it done right the first time</p>
+              <ul class="pricing-card__features">
+                <li>Everything in the DIY Kit</li>
+                <li>90-minute live setup call via screen share</li>
+                <li>Custom configuration for your integrations</li>
+                <li>Real-time security audit</li>
+                <li>7-day support window after go-live</li>
+              </ul>
+              <div class="pricing-card__cta">
+                <a href="#checkout-dwy" class="btn btn--primary btn--large">
+                  Book Your Setup Call → $289
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Microcopy -->
+          <p class="text-center fade-in" style="margin-top: var(--space-6); font-size: var(--text-sm); color: var(--color-text-muted);">
+            Secure checkout via Stripe. Instant access after purchase.
+          </p>
+
+        </div>
+      </section>
+
+      <!-- =====================================================
+           FAQ SECTION
+           ===================================================== -->
+      <section class="section faq">
+        <div class="container">
+          <h2 class="heading-2 faq-section__title text-center fade-in">
+            Questions you probably have
+          </h2>
+
+          <div class="accordion">
+            <!-- FAQ 1 -->
+            <div class="accordion-item fade-in">
+              <button class="accordion-header" aria-expanded="false">
+                <span>I'll just figure it out myself. Why pay for this?</span>
+                <span class="accordion-icon">[+]</span>
+              </button>
+              <div class="accordion-content">
+                <p class="accordion-body">
+                  You can. I did. It took 25+ hours and several security scares along the way. If you enjoy that process, go for it. This is $29 to skip the learning curve and get straight to using the thing.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="accordion-item fade-in">
+              <button class="accordion-header" aria-expanded="false">
+                <span>Is VPS actually as good as running it on a Mac Mini?</span>
+                <span class="accordion-icon">[+]</span>
+              </button>
+              <div class="accordion-content">
+                <p class="accordion-body">
+                  For most users, it's better. Always-on without leaving hardware running in your house. Accessible from anywhere. No electricity costs or hardware depreciation. Easier to isolate and rebuild if something gets compromised. The only tradeoff is you're paying monthly instead of once, but $10/month is a fraction of what a Mac Mini costs over time.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="accordion-item fade-in">
+              <button class="accordion-header" aria-expanded="false">
+                <span>What if OpenClaw releases breaking changes?</span>
+                <span class="accordion-icon">[+]</span>
+              </button>
+              <div class="accordion-content">
+                <p class="accordion-body">
+                  The guides include lifetime updates. When they ship changes that break the setup process, I update the guide. You're not stuck with a snapshot from today.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="accordion-item fade-in">
+              <button class="accordion-header" aria-expanded="false">
+                <span>$289 seems expensive for a call.</span>
+                <span class="accordion-icon">[+]</span>
+              </button>
+              <div class="accordion-content">
+                <p class="accordion-body">
+                  It's 90 minutes of focused setup with someone who's done this many times, plus a security audit, plus custom configuration for your specific integrations, plus 7 days of support afterward. Compare that to hiring a DevOps contractor or spending 15+ hours troubleshooting alone. The call isn't the value. Getting it done right the first time is.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="accordion-item fade-in">
+              <button class="accordion-header" aria-expanded="false">
+                <span>Why should I trust you?</span>
+                <span class="accordion-icon">[+]</span>
+              </button>
+              <div class="accordion-content">
+                <p class="accordion-body">
+                  Fair question. I'm an early adopter who's been running Clawdbot since before the rebrands to Moltbot and OpenClaw. I've made the mistakes so you don't have to. The guides exist because I wish they existed when I started.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ 6 -->
+            <div class="accordion-item fade-in">
+              <button class="accordion-header" aria-expanded="false">
+                <span>What if I buy this and still can't get it working?</span>
+                <span class="accordion-icon">[+]</span>
+              </button>
+              <div class="accordion-content">
+                <p class="accordion-body">
+                  If you get stuck, reach out. I want this to work for you. The DIY kit is designed to be followable even if you've never touched a terminal before. If you want guaranteed success, the Done-With-You option exists for exactly that reason.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ 7 -->
+            <div class="accordion-item fade-in">
+              <button class="accordion-header" aria-expanded="false">
+                <span>Can I upgrade from DIY to Done-With-You later?</span>
+                <span class="accordion-icon">[+]</span>
+              </button>
+              <div class="accordion-content">
+                <p class="accordion-body">
+                  Yes. If you buy the DIY kit and decide you want hands-on help, you can upgrade and I'll credit your $29 toward the call.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           CONTACT SECTION
+           ===================================================== -->
+      <section class="section" style="padding-top: 0;">
+        <div class="container">
+          <p class="text-body text-center fade-in" style="color: var(--color-text-secondary);">
+            Questions? Reach out at <a href="mailto:remy@aiwithremy.com" style="color: var(--color-accent);">remy@aiwithremy.com</a>. I reply to everything.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__content fade-in">
+          <!-- Logo -->
+          <a href="/" class="footer__logo-link" aria-label="AI with Remy Home">
+            <img
+              src="/Website assets/ai-with-remy-logo.gif"
+              alt="AI with Remy"
+              class="footer__logo"
+            >
+          </a>
+
+          <!-- Navigation Links -->
+          <nav class="footer__nav" aria-label="Footer navigation">
+            <a href="/" class="footer__nav-link text-mono">HOME</a>
+            <a href="https://aiwithremy.beehiiv.com/archive" class="footer__nav-link text-mono">NEWSLETTER</a>
+            <a href="mailto:remy@aiwithremy.com" class="footer__nav-link text-mono">CONTACT</a>
+          </nav>
+
+          <!-- Social Buttons -->
+          <div class="footer__social" aria-label="Social media links">
+            <a
+              href="https://www.instagram.com/aiwithremy/"
+              class="footer__social-btn btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow on Instagram"
+            >
+              <svg class="footer__social-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a
+              href="https://www.youtube.com/@aiwithremy/"
+              class="footer__social-btn btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Subscribe on YouTube"
+            >
+              <svg class="footer__social-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+              </svg>
+            </a>
+            <a
+              href="https://x.com/remy_gaskell"
+              class="footer__social-btn btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow on X"
+            >
+              <svg class="footer__social-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Copyright & Credit -->
+          <div class="footer__legal">
+            <p class="footer__copyright text-mono">
+              &copy; 2025 AI WITH REMY. ALL RIGHTS RESERVED.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =====================================================
+         PAGE END ELEMENT (Dither Fade)
+         ===================================================== -->
+    <div class="page-end" aria-hidden="true">
+      <div class="page-end__dither"></div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // === FAQ & Accordion ===
+      const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+      accordionHeaders.forEach(header => {
+        header.addEventListener('click', function() {
+          const item = this.parentElement;
+          const icon = this.querySelector('.accordion-icon');
+          const isActive = item.classList.contains('active');
+
+          // Close all other items in the same accordion and reset icons
+          const parentAccordion = item.closest('.accordion');
+          parentAccordion.querySelectorAll('.accordion-item').forEach(i => {
+            i.classList.remove('active');
+            i.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
+            i.querySelector('.accordion-icon').textContent = '[+]';
+          });
+
+          // Toggle current item
+          if (!isActive) {
+            item.classList.add('active');
+            this.setAttribute('aria-expanded', 'true');
+            icon.textContent = '[-]';
+          }
+        });
+
+        // Keyboard accessibility
+        header.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.click();
+          }
+        });
+      });
+
+      // === Scroll Fade-In Animations ===
+      const fadeElements = document.querySelectorAll('.fade-in:not(.hero .fade-in)');
+
+      const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            fadeObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      fadeElements.forEach(el => fadeObserver.observe(el));
+
+      // === Smooth Scroll for Internal Links ===
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('href');
+          if (targetId === '#' || targetId.startsWith('#checkout')) return;
+
+          const target = document.querySelector(targetId);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
