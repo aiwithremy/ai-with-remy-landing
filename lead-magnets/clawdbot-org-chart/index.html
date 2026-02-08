@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Build Your Clawdbot Org Chart: From One Bot to a Full AI Team. Four multi-agent structures — from a single bot to a full company org chart.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Build Your Clawdbot Org Chart: From One Bot to a Full AI Team">
+  <meta property="og:description" content="Four multi-agent structures — from a single bot to a full company org chart with boss agents, specialist workers, and cross-team communication.">
+  <meta property="og:type" content="website">
+
+  <title>Clawdbot Org Chart Guide | AI with Remy</title>
+
+  <!-- Favicons with light/dark mode support -->
+  <link rel="icon" href="/assets/images/favicon-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="/assets/images/favicon-dark.png" media="(prefers-color-scheme: dark)">
+
+  <link rel="stylesheet" href="/styles.css">
+
+  <style>
+    /* Lead Magnet Page Specific Styles */
+    .leadmagnet-hero {
+      position: relative;
+      text-align: center;
+      padding-top: var(--space-10);
+      padding-bottom: var(--space-8);
+      z-index: 1;
+    }
+
+    @media (min-width: 810px) {
+      .leadmagnet-hero {
+        padding-top: var(--space-12);
+        padding-bottom: var(--space-10);
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .leadmagnet-hero {
+        padding-top: var(--space-16);
+        padding-bottom: var(--space-12);
+      }
+    }
+
+    .leadmagnet-hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-5);
+      padding: var(--space-1) var(--space-4);
+      background: var(--color-accent-light);
+      border: 1px solid var(--color-accent);
+      border-radius: var(--radius-lg);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-accent);
+    }
+
+    .leadmagnet-hero__headline {
+      margin-bottom: var(--space-5);
+      font-family: 'PP Neue Bit', var(--font-display);
+      font-size: 2.25rem;
+      font-weight: 700;
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      color: var(--color-text);
+    }
+
+    @media (min-width: 810px) {
+      .leadmagnet-hero__headline {
+        font-size: 3rem;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .leadmagnet-hero__headline {
+        font-size: 3.5rem;
+      }
+    }
+
+    .leadmagnet-hero__subhead {
+      max-width: 520px;
+      margin: 0 auto var(--space-8);
+      font-size: var(--text-base);
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+    }
+
+    @media (min-width: 810px) {
+      .leadmagnet-hero__subhead {
+        font-size: var(--text-md);
+      }
+    }
+
+    /* Standalone Form */
+    .leadmagnet-hero__form {
+      margin-bottom: var(--space-4);
+    }
+
+    .leadmagnet-hero__transparency {
+      max-width: 480px;
+      margin: 0 auto var(--space-8);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    @media (min-width: 810px) {
+      .leadmagnet-hero__transparency {
+        margin-bottom: var(--space-10);
+      }
+    }
+
+    /* Document Preview */
+    .doc-preview {
+      position: relative;
+    }
+
+    .doc-preview__blur {
+      position: relative;
+      filter: blur(5px);
+      opacity: 0.85;
+      pointer-events: none;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Stack wrapper — creates pile-of-documents effect */
+    .doc-preview__stack {
+      position: relative;
+      width: 70%;
+      max-width: 320px;
+    }
+
+    @media (min-width: 810px) {
+      .doc-preview__stack {
+        max-width: 360px;
+      }
+    }
+
+    /* Background pages */
+    .doc-preview__stack::before,
+    .doc-preview__stack::after {
+      content: '';
+      position: absolute;
+      inset: 2% 0 0;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border-strong);
+      border-radius: var(--radius-sm);
+      box-shadow: 0 2px 0 0 var(--color-gray-300);
+    }
+
+    .doc-preview__stack::before {
+      transform: rotate(3.5deg);
+      z-index: 1;
+    }
+
+    .doc-preview__stack::after {
+      transform: rotate(-2deg);
+      z-index: 2;
+    }
+
+    .doc-preview__page {
+      position: relative;
+      z-index: 3;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border-strong);
+      border-radius: var(--radius-sm);
+      padding: var(--space-6) var(--space-5);
+      box-shadow:
+        0 2px 0 0 var(--color-gray-300),
+        0 8px 24px rgba(0, 0, 0, 0.08);
+      aspect-ratio: 8.5 / 11;
+      max-height: 420px;
+      overflow: hidden;
+    }
+
+    @media (min-width: 810px) {
+      .doc-preview__page {
+        padding: var(--space-8) var(--space-6);
+        max-height: 480px;
+      }
+    }
+
+    /* Document title block */
+    .doc-preview__title-block {
+      margin-bottom: var(--space-5);
+      padding-bottom: var(--space-4);
+      border-bottom: 2px solid var(--color-gray-300);
+    }
+
+    .doc-preview__title-line {
+      height: 14px;
+      background: var(--color-gray-300);
+      border-radius: 2px;
+      width: 70%;
+      margin-bottom: var(--space-2);
+    }
+
+    .doc-preview__subtitle-line {
+      height: 8px;
+      background: var(--color-gray-200);
+      border-radius: 2px;
+      width: 45%;
+    }
+
+    /* Document body paragraphs */
+    .doc-preview__body {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+    }
+
+    .doc-preview__section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .doc-preview__section-heading {
+      height: 10px;
+      background: var(--color-gray-300);
+      border-radius: 2px;
+      width: 40%;
+      margin-bottom: var(--space-1);
+    }
+
+    .doc-preview__line {
+      height: 6px;
+      background: var(--color-gray-200);
+      border-radius: 2px;
+    }
+
+    .doc-preview__line--full { width: 100%; }
+    .doc-preview__line--long { width: 92%; }
+    .doc-preview__line--medium { width: 78%; }
+    .doc-preview__line--short { width: 55%; }
+
+    /* Diagram placeholder */
+    .doc-preview__diagram {
+      margin: var(--space-2) 0;
+      padding: var(--space-4);
+      border: 1px dashed var(--color-gray-300);
+      border-radius: var(--radius-sm);
+      background: var(--color-gray-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-3);
+    }
+
+    .doc-preview__diagram-box {
+      width: 32px;
+      height: 24px;
+      background: var(--color-gray-300);
+      border-radius: 3px;
+    }
+
+    .doc-preview__diagram-line {
+      width: 20px;
+      height: 2px;
+      background: var(--color-gray-300);
+    }
+
+    /* Overlay + Lock */
+    .doc-preview__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-sm);
+    }
+
+    .doc-preview__lock {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-5) var(--space-6);
+      background: var(--color-bg);
+      border: 1px solid var(--color-border-strong);
+      border-radius: var(--radius-md);
+      box-shadow:
+        0 2px 0 0 var(--color-gray-300),
+        0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .doc-preview__lock-icon {
+      width: 32px;
+      height: 32px;
+      color: var(--color-text-muted);
+    }
+
+    .doc-preview__lock-text {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <!-- =====================================================
+         HERO SECTION
+         ===================================================== -->
+    <header class="section leadmagnet-hero">
+      <div class="container">
+        <!-- Eyebrow -->
+        <div class="leadmagnet-hero__eyebrow fade-in">
+          Free guide
+        </div>
+
+        <!-- Headline -->
+        <h1 class="leadmagnet-hero__headline fade-in">
+          Build Your Clawdbot Org Chart:<br>
+          From One Bot to a Full AI Team
+        </h1>
+
+        <!-- Subhead -->
+        <p class="leadmagnet-hero__subhead fade-in">
+          I spent 9+ hours in the official OpenClaw docs and turned it into a step-by-step guide. Four multi-agent structures — from a single bot to a full company org chart with boss agents, specialist workers, and cross-team communication.
+        </p>
+
+        <!-- Signup Form -->
+        <form class="signup-form leadmagnet-hero__form fade-in" action="#" method="POST" data-leadmagnet-form>
+          <label for="leadmagnet-email" class="sr-only">Email address</label>
+          <input
+            type="email"
+            id="leadmagnet-email"
+            name="email"
+            class="signup-form__input"
+            placeholder="Enter your email"
+            required
+            autocomplete="email"
+          >
+          <button type="submit" class="btn btn--primary">
+            Get the Guide
+          </button>
+        </form>
+
+        <!-- Transparency Line -->
+        <p class="leadmagnet-hero__transparency fade-in">
+          You'll also receive my Thursday newsletter. The AI workflows, tools, and playbooks I use to stay lean and move fast.
+        </p>
+
+        <!-- Blurred Document Preview -->
+        <div class="doc-preview fade-in">
+          <div class="doc-preview__blur">
+            <div class="doc-preview__stack">
+              <div class="doc-preview__page">
+              <!-- Title block -->
+              <div class="doc-preview__title-block">
+                <div class="doc-preview__title-line"></div>
+                <div class="doc-preview__subtitle-line"></div>
+              </div>
+
+              <!-- Body content -->
+              <div class="doc-preview__body">
+                <!-- Section 1: Intro paragraph -->
+                <div class="doc-preview__section">
+                  <div class="doc-preview__line doc-preview__line--full"></div>
+                  <div class="doc-preview__line doc-preview__line--long"></div>
+                  <div class="doc-preview__line doc-preview__line--medium"></div>
+                </div>
+
+                <!-- Section 2: With heading -->
+                <div class="doc-preview__section">
+                  <div class="doc-preview__section-heading"></div>
+                  <div class="doc-preview__line doc-preview__line--full"></div>
+                  <div class="doc-preview__line doc-preview__line--long"></div>
+                  <div class="doc-preview__line doc-preview__line--full"></div>
+                  <div class="doc-preview__line doc-preview__line--short"></div>
+                </div>
+
+                <!-- Org chart diagram placeholder -->
+                <div class="doc-preview__diagram">
+                  <div class="doc-preview__diagram-box"></div>
+                  <div class="doc-preview__diagram-line"></div>
+                  <div class="doc-preview__diagram-box"></div>
+                  <div class="doc-preview__diagram-line"></div>
+                  <div class="doc-preview__diagram-box"></div>
+                </div>
+
+                <!-- Section 3: More text -->
+                <div class="doc-preview__section">
+                  <div class="doc-preview__section-heading"></div>
+                  <div class="doc-preview__line doc-preview__line--full"></div>
+                  <div class="doc-preview__line doc-preview__line--long"></div>
+                  <div class="doc-preview__line doc-preview__line--medium"></div>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="doc-preview__overlay">
+            <div class="doc-preview__lock">
+              <svg class="doc-preview__lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <span class="doc-preview__lock-text">Enter email to unlock</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main></main>
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__content fade-in">
+          <!-- Logo -->
+          <a href="/" class="footer__logo-link" aria-label="AI with Remy Home">
+            <img
+              src="/assets/images/ai-with-remy-logo.gif"
+              alt="AI with Remy"
+              class="footer__logo"
+            >
+          </a>
+
+          <!-- Navigation Links -->
+          <nav class="footer__nav" aria-label="Footer navigation">
+            <a href="https://aiwithremy.beehiiv.com/archive" class="footer__nav-link text-mono">POST ARCHIVE</a>
+            <a href="/manifesto" class="footer__nav-link text-mono">MANIFESTO</a>
+            <a href="mailto:remy@aiwithremy.com" class="footer__nav-link text-mono">CONTACT</a>
+          </nav>
+
+          <!-- Social Buttons -->
+          <div class="footer__social" aria-label="Social media links">
+            <a
+              href="https://www.instagram.com/aiwithremy/"
+              class="footer__social-btn btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow on Instagram"
+            >
+              <svg class="footer__social-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a
+              href="https://www.youtube.com/@aiwithremy/"
+              class="footer__social-btn btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Subscribe on YouTube"
+            >
+              <svg class="footer__social-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+              </svg>
+            </a>
+            <a
+              href="https://x.com/remy_gaskell"
+              class="footer__social-btn btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow on X"
+            >
+              <svg class="footer__social-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Copyright & Credit -->
+          <div class="footer__legal">
+            <p class="footer__copyright text-mono">
+              &copy; 2025 AI WITH REMY. ALL RIGHTS RESERVED.
+            </p>
+            <p class="footer__credit text-mono">
+              VIBE CODED BY YOURS TRULY WITH <a href="https://claude.ai/download" class="footer__credit-link" target="_blank" rel="noopener noreferrer">CLAUDE CODE</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =====================================================
+         PAGE END ELEMENT (Dither Fade)
+         ===================================================== -->
+    <div class="page-end" aria-hidden="true">
+      <div class="page-end__dither"></div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // === Scroll Fade-In Animations ===
+      const fadeElements = document.querySelectorAll('.fade-in:not(.leadmagnet-hero .fade-in)');
+
+      const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            fadeObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      fadeElements.forEach(el => fadeObserver.observe(el));
+
+      // Hero elements animate immediately
+      document.querySelectorAll('.leadmagnet-hero .fade-in').forEach((el, index) => {
+        el.style.animation = `heroFadeIn 400ms ease-out ${index * 80}ms forwards`;
+      });
+
+      // === Lead Magnet Form Integration ===
+      document.querySelectorAll('[data-leadmagnet-form]').forEach(form => {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          const email = form.querySelector('input[type="email"]').value;
+          const button = form.querySelector('button[type="submit"]');
+          const originalText = button.textContent;
+
+          // Loading state
+          button.textContent = 'Unlocking...';
+          button.disabled = true;
+
+          try {
+            // Get attribution data
+            const attributionData = window.getAttributionData ? window.getAttributionData() : {};
+
+            // Call the subscribe API route
+            const response = await fetch('/api/subscribe', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                email: email,
+                ...attributionData
+              })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+              // Success - redirect to access page
+              window.location.href = '/clawdbot-org-chart/access';
+            } else {
+              throw new Error(data.error || 'Subscription failed');
+            }
+          } catch (error) {
+            // Error state
+            playErrorSound();
+            button.textContent = 'Try Again';
+            console.error('Subscription error:', error);
+
+            // Reset button after 3 seconds
+            setTimeout(() => {
+              button.textContent = originalText;
+              button.disabled = false;
+            }, 3000);
+          }
+        });
+      });
+
+    });
+  </script>
+  <script src="/js/attribution-tracking.js"></script>
+  <script src="/js/button-sounds.js"></script>
+</body>
+</html>

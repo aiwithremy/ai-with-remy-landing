@@ -51,6 +51,16 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     if (response.ok) {
+      // Fire-and-forget: trigger n8n guide email workflow
+      const N8N_WEBHOOK_URL = process.env.N8N_WEBHOOK_URL;
+      if (N8N_WEBHOOK_URL) {
+        fetch(N8N_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        }).catch(err => console.error('n8n webhook error:', err));
+      }
+
       return res.status(200).json({ success: true, data });
     } else {
       return res.status(response.status).json({

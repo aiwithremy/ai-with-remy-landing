@@ -1,7 +1,11 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/claude-code-guide-watch", "destination": "/claude-code-guide/watch" },
+    { "source": "/claude-code-guide", "destination": "/lead-magnets/claude-code-guide" },
+    { "source": "/claude-code-guide/watch", "destination": "/lead-magnets/claude-code-guide/watch" },
+    { "source": "/claude-code-guide-watch", "destination": "/lead-magnets/claude-code-guide/watch" },
+    { "source": "/clawdbot-org-chart", "destination": "/lead-magnets/clawdbot-org-chart" },
+    { "source": "/clawdbot-org-chart/access", "destination": "/lead-magnets/clawdbot-org-chart/access" },
     { "source": "/clawdbot-setup", "destination": "/clawdbot" },
     { "source": "/thank-you-diy", "destination": "/clawdbot/thank-you-diy" },
     { "source": "/thank-you-dwy", "destination": "/clawdbot/thank-you-dwy" }
