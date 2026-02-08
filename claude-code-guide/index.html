@@ -13,10 +13,10 @@
   <title>Learn Claude Code | AI with Remy</title>
 
   <!-- Favicons with light/dark mode support -->
-  <link rel="icon" href="/Website assets/favicon-light.png" media="(prefers-color-scheme: light)">
-  <link rel="icon" href="/Website assets/favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="/assets/images/favicon-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="/assets/images/favicon-dark.png" media="(prefers-color-scheme: dark)">
 
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/styles.css">
 
   <style>
     /* Lead Magnet Page Specific Styles */
@@ -291,7 +291,7 @@
           <!-- Logo -->
           <a href="/" class="footer__logo-link" aria-label="AI with Remy Home">
             <img
-              src="/Website assets/ai-with-remy-logo.gif"
+              src="/assets/images/ai-with-remy-logo.gif"
               alt="AI with Remy"
               class="footer__logo"
             >
@@ -300,7 +300,7 @@
           <!-- Navigation Links -->
           <nav class="footer__nav" aria-label="Footer navigation">
             <a href="https://aiwithremy.beehiiv.com/archive" class="footer__nav-link text-mono">POST ARCHIVE</a>
-            <a href="/manifesto.html" class="footer__nav-link text-mono">MANIFESTO</a>
+            <a href="/manifesto" class="footer__nav-link text-mono">MANIFESTO</a>
             <a href="mailto:remy@aiwithremy.com" class="footer__nav-link text-mono">CONTACT</a>
           </nav>
 
@@ -425,7 +425,7 @@
 
             if (response.ok) {
               // Success - redirect to watch page
-              window.location.href = '/claude-code-guide-watch';
+              window.location.href = '/claude-code-guide/watch';
             } else {
               throw new Error(data.error || 'Subscription failed');
             }
@@ -446,7 +446,7 @@
 
     });
   </script>
-  <script src="js/attribution-tracking.js"></script>
-  <script src="js/button-sounds.js"></script>
+  <script src="/js/attribution-tracking.js"></script>
+  <script src="/js/button-sounds.js"></script>
 </body>
 </html>

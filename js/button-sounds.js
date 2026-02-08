@@ -6,9 +6,9 @@
   'use strict';
 
   // Audio elements
-  const pressSound = new Audio('Website assets/button-press.MP3');
-  const releaseSound = new Audio('Website assets/button-release.MP3');
-  const errorSound = new Audio('Website assets/error-sound.mp3');
+  const pressSound = new Audio('/assets/audio/button-press.MP3');
+  const releaseSound = new Audio('/assets/audio/button-release.MP3');
+  const errorSound = new Audio('/assets/audio/error-sound.mp3');
 
   // Preload for instant playback
   pressSound.preload = 'auto';

@@ -1,3 +1,9 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/claude-code-guide-watch", "destination": "/claude-code-guide/watch" },
+    { "source": "/clawdbot-setup", "destination": "/clawdbot" },
+    { "source": "/thank-you-diy", "destination": "/clawdbot/thank-you-diy" },
+    { "source": "/thank-you-dwy", "destination": "/clawdbot/thank-you-dwy" }
+  ]
 }
